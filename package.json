@@ -4,8 +4,8 @@
   "description": "React and Express boilerplate",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "cd server && node server.js",
+    "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -18,5 +18,15 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "save-dev": "0.0.1-security"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BootCamp-Shopper/Shopper.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/BootCamp-Shopper/Shopper/issues"
+  },
+  "homepage": "https://github.com/BootCamp-Shopper/Shopper#readme"
 }

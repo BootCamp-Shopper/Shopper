@@ -4,8 +4,8 @@
   "description": "React and Express boilerplate",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "cd server && node server.js",
+    "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -17,6 +17,9 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
-    "save-dev": "0.0.1-security"
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
+    "save-dev": "0.0.1-security",
+    "sequelize": "^6.3.3"
   }
 }

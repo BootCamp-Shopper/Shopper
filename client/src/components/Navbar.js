@@ -4,27 +4,26 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
     return (
        <div className="navbar-container">
-
           <div>
-             <Link className="navbar-link-content">
+             <Link to="/" className="navbar-link-content">
                 <i class="fas fa-home"></i>
              </Link>
           </div>
 
           <div>
-             <Link className="navbar-link-content">
+             <Link to="/superpowers" className="navbar-link-content">
                 <i class="fab fa-superpowers"></i>  
              </Link>
           </div>
 
           <div>
-             <Link className="navbar-link-content">
+             <Link to="/cart" className="navbar-link-content">
                 <i class="fas fa-shopping-cart"></i>
              </Link>
           </div>
 
           <div>
-             <Link className="navbar-link-content">
+             <Link to="/accounts" className="navbar-link-content">
                 <i class="fas fa-user-circle"></i>
              </Link>
           </div>

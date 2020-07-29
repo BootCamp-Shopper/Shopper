@@ -1,12 +1,12 @@
 import React from 'react';
+import Routes from './Routes';
 
-// Stateful ? Functional ?
-function App() {
-  return (
-    <div>
-       
-    </div>
-  );
-}
-
-export default App;
+export default class App extends React.Component {
+   render() {
+      return (
+         <div>
+           
+         </div>
+      );
+   }
+} 

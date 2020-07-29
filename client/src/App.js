@@ -1,12 +1,14 @@
 import React from 'react';
+import { Navbar } from './components/';
+import Routes from './Routes';
 
-// Stateful ? Functional ?
-function App() {
-  return (
-    <div>
-       
-    </div>
-  );
-}
-
-export default App;
+export default class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <Navbar />
+            <Routes />
+         </div>
+      );
+   }
+} 

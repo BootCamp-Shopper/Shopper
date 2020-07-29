@@ -13,7 +13,7 @@ export default function Navbar() {
 
           <div>
              <Link className="navbar-link-content">
-                <i class="fas fa-shopping-bag"></i>    
+                <i class="fab fa-superpowers"></i>  
              </Link>
           </div>
 

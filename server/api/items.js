@@ -16,10 +16,11 @@ router.get("/", async (req, res, next) => {
 //Get Single Item
 router.get("/:itemsId", async (req, res, next) => {
   try {
-    const items = await Item.findById(req.params.albumId, {
-      include: [{ model: Item }, { model: User }],
+    const items = await Item.findByPk(req.params.albumId, {
+      include: [{ model: User }],
     });
-    res.json(items);
+    // res.json(items);
+    res.send('this is /items/itemsId route');
   } catch (error) {
     next(error);
   }

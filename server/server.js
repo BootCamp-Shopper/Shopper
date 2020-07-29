@@ -7,10 +7,7 @@ const port = 4000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.listen(port, () => {
-  console.log(`Server started on Port ${port}`);
-});
+app.use('/api', require('./api'));
 
 // Error catching endware
 app.use((err, req, res, next) => {

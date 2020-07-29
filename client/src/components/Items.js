@@ -35,13 +35,14 @@ export default class Items extends Component {
             <div>
                 <div>
                     {items.map(item => {
-                        return
-                        <div>
-                            <div>{item.name}</div>
-                            <img src={item.imageUrl} alt={item.name}/>
-                            <div>{item.description}</div>
-                            <div>{item.price}</div>
-                        </div>
+                        return (
+                            <div>
+                                <div>{item.name}</div>
+                                <img src={item.imageUrl} alt={item.name}/>
+                                <div>{item.description}</div>
+                                <div>{item.price}</div>
+                            </div>
+                        )
                     })}
                 </div>
             </div>

@@ -23,7 +23,7 @@ export class userInfoComponent extends Component{
         //this is where fetch request goes; if no data or error connecting to server, catch error & send to console
         try {
             //after component mounts; call server, use route, GET db info, setState sets information to the state
-            const response = await fetch('/api/user', { method: 'GET' }); //BLOCKER: user route not built
+            const response = await fetch('/api/users', { method: 'GET' }); //BLOCKER: users route not built
             const userData = await response.json();
         
             this.setState({
@@ -55,10 +55,10 @@ export class userInfoComponent extends Component{
         //should display user image, name, address & email if user is found.
         return (
             <div>This is the user info component.
-                <div><img src = {this.state.user.imageUrl}/>
-                    <p>Username: {this.state.user.name}</p>
-                    <p>Address: {this.state.user.address}</p>
-                    <p>Email: {this.state.user.email}</p></div>
+                <div><img src = {user.imageUrl}/>
+                    <p>Username: {user.name}</p>
+                    <p>Address: {user.address}</p>
+                    <p>Email: {user.email}</p></div>
             </div>
         )
     }

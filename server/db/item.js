@@ -6,8 +6,12 @@ const Item = db.define('item', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    imageUrl: {
+    superhero: {
         type: Sequelize.STRING,
+        allowNull: false,
+    },
+    imageUrl: {
+        type: Sequelize.TEXT,
         defaultValue: 'default-item.png',
     },
     price: {

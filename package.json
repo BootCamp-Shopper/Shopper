@@ -7,7 +7,8 @@
     "start": "cd server && node server.js",
     "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "seed": "node ./server/seed"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "nodemon": "^2.0.4",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
+    "react-router-dom": "^5.2.0",
     "save-dev": "0.0.1-security",
     "sequelize": "^6.3.3"
   }

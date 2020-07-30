@@ -6,19 +6,19 @@ export default function Navbar() {
        <div className="navbar-container">
           <div>
              <Link to="/" className="navbar-link-content">
-                <i class="fas fa-home"></i>
+                <i className="fas fa-home"></i>
              </Link>
           </div>
 
           <div>
              <Link to="/superpowers" className="navbar-link-content">
-                <i class="fab fa-superpowers"></i>  
+                <i className="fab fa-superpowers"></i>  
              </Link>
           </div>
 
           <div>
              <Link to="/cart" className="navbar-link-content">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
              </Link>
           </div>
 

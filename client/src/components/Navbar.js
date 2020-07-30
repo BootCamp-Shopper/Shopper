@@ -23,8 +23,8 @@ export default function Navbar() {
           </div>
 
           <div>
-             <Link to="/accounts" className="navbar-link-content">
-                <i className="fas fa-user-circle"></i>
+             <Link to="/users" className="navbar-link-content">
+                <i class="fas fa-user-circle"></i>
              </Link>
           </div>
 

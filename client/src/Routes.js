@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home, Items } from './components/';
+import { Home, Items, UsersInfo } from './components/';
+
 
 export default function Routes() {
     // put all routes here 
@@ -13,7 +14,7 @@ export default function Routes() {
 
             <Route path="/cart" />
 
-            <Route exact path="/users" />
+            <Route exact path="/users" component={UsersInfo}/>
             <Route path ="/users/:userId" />
         </Switch>
     );

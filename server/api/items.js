@@ -7,7 +7,7 @@ router.get("/", async (req, res, next) => {
     const items = await Item.findAll({
       include: [{ model: User }],
     });
-    res.send("this is items routes");
+    res.send(items);
   } catch (error) {
     next(error);
   }
@@ -19,8 +19,7 @@ router.get("/:itemsId", async (req, res, next) => {
     const items = await Item.findByPk(req.params.itemsId, {
       include: [{ model: User }],
     });
-    // res.json(items);
-    res.send('this is /items/itemsId route');
+    res.send(items);
   } catch (error) {
     next(error);
   }

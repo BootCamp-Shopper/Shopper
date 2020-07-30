@@ -9,7 +9,7 @@ export default class Items extends Component {
         };
     }
 
-    async componentDidMout() {
+    async componentDidMount() {
         try {
             const response = await fetch("/api/items", { method: "GET" });
             const itemsData = await response.json();
@@ -37,7 +37,7 @@ export default class Items extends Component {
                 <div>
                     {items.map(item => {
                         return (
-                            <div>
+                            <div key={item.id}>
                                 <div>{item.superhero}'s {item.name}</div>
                                 <img src={item.imageUrl} alt={item.name} />
                                 <div>{item.description}</div>

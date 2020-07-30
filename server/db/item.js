@@ -6,6 +6,10 @@ const Item = db.define('item', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    superhero: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     imageUrl: {
         type: Sequelize.STRING,
         defaultValue: 'default-item.png',

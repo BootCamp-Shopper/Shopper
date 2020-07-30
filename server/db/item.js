@@ -11,7 +11,7 @@ const Item = db.define('item', {
         allowNull: false,
     },
     imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: 'default-item.png',
     },
     price: {

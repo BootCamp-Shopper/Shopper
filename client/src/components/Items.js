@@ -37,7 +37,7 @@ export default class Items extends Component {
                     {items.map(item => {
                         return (
                             <div>
-                                <div>{item.name}</div>
+                                <div>{item.superhero}'s {item.name}</div>
                                 <img src={item.imageUrl} alt={item.name}/>
                                 <div>{item.description}</div>
                                 <div>{item.price}</div>

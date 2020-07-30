@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 //Get Single Item
 router.get("/:itemsId", async (req, res, next) => {
   try {
-    const items = await Item.findByPk(req.params.albumId, {
+    const items = await Item.findByPk(req.params.itemsId, {
       include: [{ model: User }],
     });
     // res.json(items);

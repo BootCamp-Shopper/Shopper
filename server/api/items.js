@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 //Get Single Item
 router.get("/:itemId", async (req, res, next) => {
   try {
-    const item = await Item.findByPk(req.params.itemsId);
+    const item = await Item.findByPk(req.params.itemId);
 
     res.send(item);
   } catch (error) {

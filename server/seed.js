@@ -1,6 +1,7 @@
 const fs = require('fs');
-const {db, Item} = require('./db');
+const {db, Item, User} = require('./db');
 const superpowers = JSON.parse(fs.readFileSync('superpowers.json', 'utf8'));
+const admin = JSON.parse(fs.readFileSync('admin.json', 'utf8'));
 
 const seed = async() => {
     await db.sync({force: true});
@@ -11,6 +12,16 @@ const seed = async() => {
         imageUrl: superpower.imageUrl,
         price: superpower.price,
         description: superpower.description
+    })));
+
+    await Promise.all(admin.map(admin => User.create ({
+        firstName: admin.firstName,
+        lastName: admin.lastName,
+        imageUrl: admin.imageUrl,
+        address: admin.address,
+        email: admin.email,
+        password: admin.password,
+        role: admin.role,
     })));
 
     db.close();

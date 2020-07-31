@@ -6,11 +6,11 @@ router.get('/', async (req, res, next) => {
     try {
         const users = await User.findAll({
             //use attributes to pull non sensitive information from db
-            attributes: ['id', 'name', 'imageUrl', 'address', 'email'] 
+            attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'address', 'email', 'role'] 
         })
         
         //exports the queried info to front end in json array
-        res.json(users);
+        res.send(users);
         
         
     } catch (error) {

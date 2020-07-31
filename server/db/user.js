@@ -1,8 +1,13 @@
 const Sequelize = require('sequelize');
+// require('sequelize-isunique-validator')(Sequelize);
 const db = require('./db');
 
 const User = db.define('user', {
-    name: {
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    lastName: {
         type: Sequelize.STRING,
         allowNull: false,
     },
@@ -16,11 +21,22 @@ const User = db.define('user', {
     },
     email: {
         type: Sequelize.STRING,
-        validate: { isEmail: true },
         allowNull: false,
+        unique: true,
+        validate: { 
+            isEmail: true,
+            // isUnique: db.validateIsUnique(
+            //     'email',
+            //     'This email address already exists.'
+            // )
+        },
     },
     password: {
         type: Sequelize.STRING,
+        allowNull: false,
+    },
+    role: {
+        type: Sequelize.ENUM('admin', 'member'),
         allowNull: false,
     },
 });

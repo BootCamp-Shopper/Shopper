@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const app = express();
 const { db } = require("./db");
 const morgan = require("morgan");
@@ -7,6 +8,7 @@ const port = 4000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/api', require('./api'));
 
 // Error catching endware

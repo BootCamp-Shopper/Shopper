@@ -14,12 +14,11 @@ router.get("/", async (req, res, next) => {
 });
 
 //Get Single Item
-router.get("/:itemsId", async (req, res, next) => {
+router.get("/:itemId", async (req, res, next) => {
   try {
-    const items = await Item.findByPk(req.params.itemsId, {
-      include: [{ model: User }],
-    });
-    res.send(items);
+    const item = await Item.findByPk(req.params.itemsId);
+
+    res.send(item);
   } catch (error) {
     next(error);
   }

@@ -2,37 +2,33 @@
     {
         "firstName": "Aisha",
         "lastName": "Benalla",
-        "imageUrl": "./public/default_user.jpg",
+        "imageUrl": "https://www.flexdata.com.au/wp-content/uploads/2015/02/default_avatar_female.jpg",
         "address": "LIC, NY",
         "email": "aishaben.18@gmail.com",
-        "password": "1234",
-        "role": "admin"
+        "password": "1234"
     },
     {
         "firstName": "Allende",
         "lastName": "Aigbedion",
-        "imageUrl": "./public/default_user.jpg",
+        "imageUrl": "https://www.easy-profile.com/support.html?controller=attachment&task=download&tmpl=component&id=2883",
         "address": "Queens, NY",
         "email": "ajaigbedion@gmail.com",
-        "password": "1234",
-        "role": "admin"
+        "password": "1234"
     },
     {
         "firstName": "Kat",
         "lastName": "Kim",
-        "imageUrl": "./public/default_user.jpg",
+        "imageUrl": "https://www.flexdata.com.au/wp-content/uploads/2015/02/default_avatar_female.jpg",
         "address": "Queens, NY",
         "email": "katkim0307@gmail.com",
-        "password": "1234",
-        "role": "admin"
+        "password": "1234"
     },
     {
         "firstName": "Matthew",
         "lastName": "Piedra",
-        "imageUrl": "./public/default_user.jpg",
+        "imageUrl": "https://www.easy-profile.com/support.html?controller=attachment&task=download&tmpl=component&id=2883",
         "address": "Queens, NY",
         "email": "matthewpiedra1228@gmail.com",
-        "password": "1234",
-        "role": "admin"
+        "password": "1234"
     }
 ]

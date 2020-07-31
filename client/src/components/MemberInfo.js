@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default class MemberInfo extends Component {
     constructor() {
         super();
         this.state = {
-            memberInfo: [],
+            memberInfo: {},
             loading: true,
         };
     };
 
     async componentDidMount() {
         try {
-            const { data } = await axios.get('/api/users/:userId');
+            // const { data } = await axios.get('/api/users/:userId');
+            const { userId } = this.props.match.params;
+            const member = await fetch(`/api/users/${userId}`, { method: 'GET' });
+            const memberData = await member.json();
+            console.log(memberData);
             this.setState({
-                memberInfo: data,
+                memberInfo: memberData,
                 loading: false,
             });
         } catch (err) {
@@ -27,23 +31,18 @@ export default class MemberInfo extends Component {
         if (loading) {
             return <div>Loading...</div>
         }
-        if (!memberInfo.length) {
-            return <div>Member does not exist.</div>
-        }
 
         return (
             <div>
-                {memberInfo.map(member => (
-                    <li key={member.id}>
-                        <div>
-                            <img src={member.imageUrl} alt='userImage' />
-                            <p>Name: {member.firstName} {member.lastName}</p>
-                            <p>Address: {member.address}</p>
-                            <p>Email: {member.email}</p>
-                            <p>Role: {member.role}</p>
-                        </div>
-                    </li>
-                ))}
+                <li key={memberInfo.id}>
+                    <div>
+                        <img src={memberInfo.imageUrl} alt='userImage' />
+                        <p>Name: {memberInfo.firstName} {memberInfo.lastName}</p>
+                        <p>Address: {memberInfo.address}</p>
+                        <p>Email: {memberInfo.email}</p>
+                        <p>Role: {memberInfo.role}</p>
+                    </div>
+                </li>
             </div>
         );
     };

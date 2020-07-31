@@ -7,7 +7,7 @@ router.get("/:userId", async (req, res, next) => {
       const userCart = await User.findByPk(req.params.userId, {
         include: [{ model: Item }],
       }); // this is the user's cart information. it is found through querying db for current user & through association with table "order"
-      res.send("This is userId-order route.");
+      res.send(userCart);
     } catch (err) {next(err);}
 });
 

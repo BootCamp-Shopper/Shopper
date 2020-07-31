@@ -24,7 +24,7 @@ export default function Navbar() {
 
           <div>
              <Link to="/users" className="navbar-link-content">
-                <i class="fas fa-user-circle"></i>
+                <i className="fas fa-user-circle"></i>
              </Link>
           </div>
 

@@ -24,6 +24,18 @@ router.get('/:usersId', async(req, res, next) => {
     }
 });
 
+// Add a new user to the database 
+router.post('/login', async (req,res,next) => {
+    try {
+        // builds a new user instance to add to the database
+        const user = await User.create(req.body);
+
+        res.send(user);
+    }
+    catch(err) {
+        next(err);
+    }
+});
 
 module.exports = router;
 

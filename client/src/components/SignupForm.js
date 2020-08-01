@@ -4,7 +4,7 @@ function SignupForm (props){
     const {handleSubmit} = props
     return (
         <div>
-            <form onSubmit= {handleSubmit} name='signup'>
+            <form onSubmit= {handleSubmit}>
             <div>
                 <label htmlFor='email'>
                     <small>
@@ -24,12 +24,12 @@ function SignupForm (props){
             </div>
             
             <div>
-            <label htmlFor='username'>
+            <label htmlFor='name'>
                     <small>
-                        Username:
+                        Name:
                     </small>
                 </label>
-                <input name='username' type='text'/>
+                <input name='name' type='text'/>
             </div>
 
             <div>
@@ -60,3 +60,5 @@ function SignupForm (props){
         </div>
     )
 }
+
+export default SignupForm;

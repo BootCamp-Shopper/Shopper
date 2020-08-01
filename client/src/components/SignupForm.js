@@ -24,21 +24,21 @@ function SignupForm(props) {
                 </div>
 
                 <div>
-                    <label htmlFor='name'>
+                    <label htmlFor='firstName'>
                         <small>
                             First Name:
                     </small>
                     </label>
-                    <input name='name' type='text' />
+                    <input name='firstName' type='text' />
                 </div>
 
                 <div>
-                <label htmlFor='name'>
+                <label htmlFor='lastName'>
                         <small>
                             Last Name:
                     </small>
                     </label>
-                    <input name='name' type='text' />
+                    <input name='lastName' type='text' />
                 </div>
 
                 <div>

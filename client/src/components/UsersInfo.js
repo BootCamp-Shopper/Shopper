@@ -18,7 +18,7 @@ export default class UsersInfo extends Component{
         //this is where fetch request goes; if no data or error connecting to server, catch error & send to console
         try {
             //after component mounts; call server, use route, GET db info, setState sets information to the state            
-            const {data} = await axios.get('/api/users'); //BLOCKER: users route not built
+            const {data} = await axios.get('/api/users'); 
             
         
             this.setState({
@@ -28,7 +28,7 @@ export default class UsersInfo extends Component{
 
         } catch (error) {
             console.error('ERROR: ', error);           
-            
+
         }
         
         
@@ -55,9 +55,10 @@ export default class UsersInfo extends Component{
                     <li key={user.id}>
                         <div>
                             <img src = {user.imageUrl} alt='userImage'/>
-                            <p>Username: {user.name}</p>
+                            <p>Name: {user.firstName} {user.lastName}</p>
                             <p>Address: {user.address}</p>
                             <p>Email: {user.email}</p>
+                            <p>Role: {user.role}</p>
                         </div>
             
                     </li>)

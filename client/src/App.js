@@ -7,7 +7,9 @@ export default class App extends React.Component {
     return (
       <div>
         <Navbar />
-        <Routes />
+        <div className="content"> 
+           <Routes />
+        </div>
       </div>
     );
   }

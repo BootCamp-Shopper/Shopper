@@ -25,14 +25,12 @@ export default class Signup extends Component {
         let res;
 
         try {
-            res = await axios.post('/auth/signup', {
+            res = await axios.post('api/users/signup', {
                 email, firstName, lastName, password, address, imageUrl
             })
         } catch (error) {
             console.error(error)
         }
-
-
     }
 
     render() {

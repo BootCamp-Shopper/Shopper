@@ -15,7 +15,7 @@ export default function Home() {
             <text> and not a part of our marvelous community? </text>
             <text> Well, hurry up and join in the fun by signing up for an account and grabbing your own unique superpower! </text>
             <div className="sign-up-container">
-               <Link to="/accounts"> <button className="sign-up-btn"> Sign up </button> </Link>
+               <Link to="/signup"> <button className="sign-up-btn"> Sign up </button> </Link>
             </div>
          </div>
          <div>

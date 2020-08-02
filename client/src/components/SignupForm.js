@@ -1,23 +1,32 @@
 import React from 'react';
 
-function SignupForm (props){
-    const {handleSubmit} = props
+function SignupForm(props) {
+    const { handleSubmit } = props
     return (
         <div>
-            <form onSubmit= {handleSubmit}>
-            <div>
-                <label htmlFor='email'>
-                    <small>
-                        Email:
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor='email'>
+                        <small>
+                            Email:
                     </small>
-                </label>
-                <input name='email' type='text'/>
-            </div>
-            
-            <div>
-            <label htmlFor='password'>
-                    <small>
-                        Password:
+                    </label>
+                    <input name='email' type='text' />
+                </div>
+
+                <div>
+                    <label htmlFor='password'>
+                        <small>
+                            Password:
+                    </small>
+                    </label>
+                    <input name='password' type='password' />
+                </div>
+
+                <div>
+                    <label htmlFor='firstName'>
+                        <small>
+                            First Name:
                     </small>
                 </label>
                 <input name='password' type='password'/>
@@ -41,29 +50,29 @@ function SignupForm (props){
                 <input name='lastName' type='text'/>
             </div>
 
-            <div>
-            <label htmlFor='address'>
-                    <small>
-                        Address:
+                <div>
+                    <label htmlFor='address'>
+                        <small>
+                            Address:
                     </small>
-                </label>
-                <input name='address' type='text'/>
-            </div>
+                    </label>
+                    <input name='address' type='text' />
+                </div>
 
-            <div>
-            <label htmlFor='imageUrl'>
-                    <small>
-                        ImageUrl:
+                <div>
+                    <label htmlFor='imageUrl'>
+                        <small>
+                            ImageUrl:
                     </small>
-                </label>
-                <input name='imageUrl' type='text'/>
-            </div>
+                    </label>
+                    <input name='imageUrl' type='text' />
+                </div>
 
-            <div>
-                <button type='submit'>
-                    Sign Up
+                <div>
+                    <button type='submit'>
+                        Sign Up
                 </button>
-            </div>
+                </div>
 
             </form>
         </div>

@@ -15,6 +15,19 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+// Add a new user to the database 
+router.post('/signup', async (req,res,next) => {
+    try {
+        // builds a new user instance to add to the database
+        // const user = await User.create(req.body);
+        // res.send(user);
+        res.send('this is api/users/signup route')
+    }
+    catch(err) {
+        next(err);
+    }
+});
+
 router.get('/:usersId', async(req, res, next) => {
     try {
         const user = await User.findByPk(req.params.usersId);

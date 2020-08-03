@@ -22,12 +22,12 @@ export default class Signup extends Component {
         const imageUrl = event.target.imageUrl.value;
 
         //send data to server; to be sent to db
-        let res;
-
         try {
-            res = await axios.post('api/users/signup', {
-                email, firstName, lastName, password, address, imageUrl
+            const {data} = await axios.post('/auth/signup', {email, firstName, lastName, password, address, imageUrl})
+            this.props.history.push({
+                pathname: `/users/${data.id}`
             })
+
         } catch (error) {
             console.error(error)
         }

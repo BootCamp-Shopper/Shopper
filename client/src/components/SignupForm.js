@@ -28,18 +28,27 @@ function SignupForm(props) {
                         <small>
                             First Name:
                     </small>
-                    </label>
-                    <input name='firstName' type='text' />
-                </div>
-
-                <div>
-                <label htmlFor='lastName'>
-                        <small>
-                            Last Name:
+                </label>
+                <input name='password' type='password'/>
+            </div>
+            
+            <div>
+            <label htmlFor='firstName'>
+                    <small>
+                        First Name:
                     </small>
-                    </label>
-                    <input name='lastName' type='text' />
-                </div>
+                </label>
+                <input name='firstName' type='text'/>
+            </div>
+
+            <div>
+            <label htmlFor='lastName'>
+                    <small>
+                        Last Name:
+                    </small>
+                </label>
+                <input name='lastName' type='text'/>
+            </div>
 
                 <div>
                     <label htmlFor='address'>

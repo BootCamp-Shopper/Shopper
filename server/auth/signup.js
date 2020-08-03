@@ -5,7 +5,7 @@ const { User } = require('../db/'); // requires user from db since route require
 router.post('/', async(req, res, next) => {
     try {
         const newUser = await User.create(req.body)
-        res.send(newUser)
+        res.json(newUser)
         
     } catch (error) {
         next(error);

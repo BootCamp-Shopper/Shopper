@@ -39,6 +39,8 @@ export default function Login() {
                         Login
                     </Button>
                 </Link>
+                <br /><br />
+                <div>Not part of superpower community? Join us!</div>
                 <Link to="/signup">
                     <Button block bssize="large" type="submit">
                         Sign Up

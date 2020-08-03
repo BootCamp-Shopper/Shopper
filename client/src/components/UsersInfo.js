@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class UsersInfo extends Component{
@@ -10,7 +11,6 @@ export default class UsersInfo extends Component{
             users: [], 
             //renders placeholder while loading data
             loading: true
-            
         }
     }
 
@@ -20,7 +20,6 @@ export default class UsersInfo extends Component{
             //after component mounts; call server, use route, GET db info, setState sets information to the state            
             const {data} = await axios.get('/api/users'); 
             
-        
             this.setState({
                 users: data,
                 loading: false
@@ -28,10 +27,7 @@ export default class UsersInfo extends Component{
 
         } catch (error) {
             console.error('ERROR: ', error);           
-
-        }
-        
-        
+        }   
     }
 
     render(){
@@ -55,7 +51,7 @@ export default class UsersInfo extends Component{
                     <li key={user.id}>
                         <div>
                             <img src = {user.imageUrl} alt='userImage'/>
-                            <p>Name: {user.firstName} {user.lastName}</p>
+                            <p><Link to={`/users/${user.id}`}>Name: {user.firstName} {user.lastName}</Link></p>
                             <p>Address: {user.address}</p>
                             <p>Email: {user.email}</p>
                             <p>Role: {user.role}</p>

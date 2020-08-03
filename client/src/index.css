@@ -26,6 +26,12 @@ html, body {
 .navbar-link-content:hover {
   color: lightgray;
 }
+.selected {
+  text-decoration: none;
+  color: white;
+  font-size: 3.5em;
+  pointer-events: none;
+}
 
 .content {
   height: 91vh;
@@ -81,4 +87,20 @@ html, body {
 .items-form {
    margin-top: 20px;
    margin-bottom: 40px;
+}
+
+a {
+   text-decoration: none;
+   color: blue;
+}
+a:hover {
+   text-decoration: underline;
+}
+
+.individual-item-page {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10px;
 }

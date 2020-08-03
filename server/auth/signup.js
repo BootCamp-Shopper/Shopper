@@ -4,8 +4,18 @@ const { User } = require('../db/'); // requires user from db since route require
 //POST request to add (user) information to database
 router.post('/', async(req, res, next) => {
     try {
-        const newUser = await User.create(req.body)
-        res.json(newUser)
+        const check = await User.findOne({
+            where: {email: req.body.email}
+        })
+
+        if (check){
+            res.send("Email is already in use!")
+        }
+
+        else {
+            const newUser = await User.create(req.body)
+            res.json(newUser)
+        }    
         
     } catch (error) {
         next(error);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 export default class Items extends Component {
@@ -99,10 +100,9 @@ export default class Items extends Component {
                     {items.map(item => {
                         return (
                             <div key={item.id}>
-                                <div>{item.superhero}'s {item.name}</div>
                                 <img src={item.imageUrl} alt={item.name} />
-                                <div>{item.description}</div>
-                                <div>{item.price}</div>
+                                <div> <Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link> </div>
+                                <div>${item.price}</div>
                             </div>
                         )
                     })}

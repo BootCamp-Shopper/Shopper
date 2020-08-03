@@ -8,3 +8,4 @@ export { default as Login } from './Login.js';
 export { default as MemberInfo } from './MemberInfo.js';
 export { default as Item } from './Item.js';
 export { default as NotFound } from './NotFound.js';
+export { default as Payment } from './Payment.js';

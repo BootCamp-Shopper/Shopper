@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 export default class Item extends Component {
@@ -14,6 +15,7 @@ export default class Item extends Component {
    async componentDidMount() {
       try {
         const { superpowerId } = this.props.match.params;
+        
         const { data } = await Axios.get(`/api/items/${superpowerId}`);
 
         this.setState({
@@ -36,11 +38,12 @@ export default class Item extends Component {
       }
       else {
          return (
-             <div>
-                <div> {item.superhero} {item.name} </div>
+             <div className="individual-item-page">
                 <img src={item.imageUrl} alt=""/>
+                <div> {item.superhero}'s' {item.name} </div>
+                <div> ${item.price} </div>
                 <div> {item.description} </div>
-                <div> {item.price} </div>
+                <div> <Link to="/superpowers"> Back to superpower list </Link> </div>
              </div>
          );
       }

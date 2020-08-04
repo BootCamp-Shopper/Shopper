@@ -38,7 +38,7 @@ export default class Item extends Component {
       }
       else {
          return (
-             <div className="individual-item-page">
+             <div className="individual-page">
                 <img src={item.imageUrl} alt=""/>
                 <div> {item.superhero}'s' {item.name} </div>
                 <div> ${item.price} </div>

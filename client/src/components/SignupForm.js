@@ -1,81 +1,61 @@
 import React from 'react';
+import { Button, Form } from 'react-bootstrap';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+const style = {
+        position: 'relative',
+        padding: '1rem',
+        border: '.2rem solid #ececec',
+        borderRadius: '8px',
+        marginRight: '5%',
+        marginLeft: '5%',
+        color: '#212529'
+    }
 
 function SignupForm(props) {
     const { handleSubmit } = props
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='email'>
-                        <small>
-                            Email:
-                    </small>
-                    </label>
-                    <input name='email' type='text' />
-                </div>
+            <Form onSubmit={handleSubmit} style={style}>
+                <Form.Group controlId="Email">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control required type="email" name='email' placeholder="Enter email" />
+                    <Form.Text className='text-muted'>
+                        Your email and other information will not be shared.
+                    </Form.Text>
+                </Form.Group>
 
-                <div>
-                    <label htmlFor='password'>
-                        <small>
-                            Password:
-                    </small>
-                    </label>
-                    <input name='password' type='password' />
-                </div>
+                <Form.Group controlId="Password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control required type="password" name='password' placeholder="Password"/>
+                </Form.Group>
 
-                <div>
-                    <label htmlFor='firstName'>
-                        <small>
-                            First Name:
-                    </small>
-                </label>
-                <input name='password' type='password'/>
-            </div>
-            
-            <div>
-            <label htmlFor='firstName'>
-                    <small>
-                        First Name:
-                    </small>
-                </label>
-                <input name='firstName' type='text'/>
-            </div>
+                <Form.Group controlId="First Name">
+                    <Form.Label>Firstname</Form.Label>
+                    <Form.Control required type="text" name='firstName' placeholder="Enter Here"/>
+                </Form.Group>
 
-            <div>
-            <label htmlFor='lastName'>
-                    <small>
-                        Last Name:
-                    </small>
-                </label>
-                <input name='lastName' type='text'/>
-            </div>
+                <Form.Group controlId="Last Name">
+                    <Form.Label>Lastname</Form.Label>
+                    <Form.Control required type="text" name='lastName' placeholder="Enter Here"/>
+                </Form.Group>
+                
+                <Form.Group controlId="Address">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control required type="text" name='address' placeholder="ex: 10000 Somewhere Street" />
+                </Form.Group>
+                        
+                <Form.Group controlId="Image">
+                    <Form.Label>User Image URL</Form.Label>
+                    <Form.Control required type="text" name='imageUrl' placeholder="Direct link from image host" />
+                </Form.Group>
 
-                <div>
-                    <label htmlFor='address'>
-                        <small>
-                            Address:
-                    </small>
-                    </label>
-                    <input name='address' type='text' />
-                </div>
-
-                <div>
-                    <label htmlFor='imageUrl'>
-                        <small>
-                            ImageUrl:
-                    </small>
-                    </label>
-                    <input name='imageUrl' type='text' />
-                </div>
-
-                <div>
-                    <button type='submit'>
+                <Button variant="primary" type='submit'>
                         Sign Up
-                </button>
-                </div>
+                </Button>
+                
 
-            </form>
-        </div>
+            </Form>
     )
 }
 

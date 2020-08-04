@@ -3,6 +3,9 @@ const { User, Address } = require('../db/'); // requires user from db since rout
 
 //POST request to add (user) information to database
 router.post('/', async(req, res, next) => {
+    const {email, firstName, lastName, password, imageUrl,
+    line1, line2, city, state, zip} = req.body;
+
     try {
         const check = await User.findOne({
             where: {email: req.body.userDetails.email}
@@ -30,12 +33,9 @@ router.post('/', async(req, res, next) => {
             res.json(newUser)
 
         }    
-        
     } catch (error) {
         next(error);
     }
 })
-
-
 
 module.exports = router;

@@ -14,11 +14,22 @@ export default class Signup extends Component {
         event.preventDefault()
 
         //variables containing user's input values
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        const firstName = event.target.firstName.value;
-        const lastName = event.target.lastName.value;
-        const imageUrl = event.target.imageUrl.value;
+        
+        const userDetails = {
+            email: event.target.email.value,
+            password: event.target.password.value,
+            firstName: event.target.firstName.value,
+            lastName: event.target.lastName.value,
+            imageUrl: event.target.imageUrl.value
+        }
+
+        const userAddress = {
+            line1: event.target.line1.value,
+            line2: event.target.line2.value,
+            city: event.target.city.value,
+            state: event.target.state.value,
+            zip: event.target.zip.value
+        }
 
         // variables containing address' input values
         const line1 = event.target.line1.value;
@@ -29,12 +40,8 @@ export default class Signup extends Component {
 
         //send data to server; to be sent to db
         try {
-            const {data} = await axios.post('/auth/signup', {
-                email, firstName, lastName, password, imageUrl,
-                line1, line2, city, state, zip,
-            })
-            console.log(data);
-
+            const {data} = await axios.post('/auth/signup', {userAddress, userDetails})
+            
             if (typeof data === 'string'){
                 window.alert(data)
             }

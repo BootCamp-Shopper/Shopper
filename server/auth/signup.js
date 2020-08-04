@@ -8,7 +8,7 @@ router.post('/', async(req, res, next) => {
 
     try {
         const check = await User.findOne({
-            where: {email: req.body.email}
+            where: {email: req.body.userDetails.email}
         })
 
         if (check){
@@ -16,14 +16,22 @@ router.post('/', async(req, res, next) => {
         }
 
         else {
-            const newUser = await User.create({email, firstName, lastName, password, imageUrl});
-            const newAddress = await Address.create({line1, line2, city, state, zip});
-            await newAddress.setUser(newUser);
-            const userAddress = await User.findOne({
-                where: {id: newUser.id},
-                include: Address,
-            });
-            res.send(userAddress);
+            const newUser = await User.create(req.body.userDetails)
+            const newAddress = await Address.create(req.body.userAddress)
+            
+            await newUser.addAddress(newAddress) //by the power of literal magic (Sequelize has "magic methods" that just happen I guess??????); Sequelize has now associated the user and address table
+            
+            const test = await User.findOne({
+                where: {
+                    id: newUser.id
+                },
+                include: [{
+                    model: Address
+                }]
+            })
+            
+            res.json(newUser)
+
         }    
     } catch (error) {
         next(error);

@@ -5,14 +5,14 @@ import axios from 'axios';
 export default class UsersInfo extends Component{
     //template for react component
     constructor(){
-        super()
+        super();
         //inital state of user info component; user should have info that matches tables in db
         this.state = {
             users: [], 
             //renders placeholder while loading data
             loading: true
-        }
-    }
+        };
+    };
 
     async componentDidMount(){
         //this is where fetch request goes; if no data or error connecting to server, catch error & send to console
@@ -23,13 +23,31 @@ export default class UsersInfo extends Component{
             this.setState({
                 users: data,
                 loading: false
-            }) 
+            });
 
             console.log(data);
         } catch (error) {
             console.error('ERROR: ', error);           
         }   
-    }
+    };
+
+    async handleDelete(deletingUserId) {
+        try {
+            const {data} = await axios.delete(`/api/users/${deletingUserId}`);
+            console.log(data);
+            // ONLY DELETE THE USER IF IT'S SUCCESSFUL IN THE BACKEND
+            // AND MOVE ON TO LINE 40
+
+            const newUsersList = this.state.users.filter(user => {
+                return user.id !== deletingUserId;
+            });
+            this.setState ({
+                users: [...newUsersList]
+            });
+        } catch (err) {
+            console.error('ERROR: ', err);
+        }
+    };
 
     render(){
         //retrieving user and loading info from state
@@ -48,8 +66,9 @@ export default class UsersInfo extends Component{
         //should display user image, name, address & email if user is found.
         return (
             <div>This is the ADMIN's route to ALL USERS info.
+                <hr />
                 {users.map(user => (
-                    <li key={user.id}>
+                    <li className="list" key={user.id}>
                         <div>
                             <img src = {user.imageUrl} alt='userImage'/>
                             <p> Name: <Link to={`/users/${user.id}`}>{user.firstName} {user.lastName}</Link></p>
@@ -59,8 +78,8 @@ export default class UsersInfo extends Component{
                             <p> Zipcode: {user.addresses[0].zip} </p>
                             <p> Email: {user.email}</p>
                             <p> Role: {user.role}</p>
+                            <button type="button" onClick={evt => this.handleDelete(user.id)}>Delete</button>
                         </div>
-            
                     </li>)
                 )}
             </div>    

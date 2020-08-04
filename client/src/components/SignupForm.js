@@ -40,9 +40,29 @@ function SignupForm(props) {
                     <Form.Control required type="text" name='lastName' placeholder="Enter Here"/>
                 </Form.Group>
                 
-                <Form.Group controlId="Address">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control required type="text" name='address' placeholder="ex: 10000 Somewhere Street" />
+                <Form.Group controlId="Line1">
+                    <Form.Label>Street Address</Form.Label>
+                    <Form.Control required type="text" name='line1' placeholder="ex: 10000 Somewhere Street" />
+                </Form.Group>
+
+                <Form.Group controlId="Line2">
+                    <Form.Label>Apt/PO Box #</Form.Label>
+                    <Form.Control required type="text" name='line2' placeholder="ex: 100-00 ABC Street" />
+                </Form.Group>
+
+                <Form.Group controlId="City">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control required type="text" name='city' placeholder="ex: Queens" />
+                </Form.Group>
+
+                <Form.Group controlId="State">
+                    <Form.Label>State</Form.Label>
+                    <Form.Control required type="text" name='state' placeholder="ex: NY" />
+                </Form.Group>
+
+                <Form.Group controlId="Zipcode">
+                    <Form.Label>Zipcode</Form.Label>
+                    <Form.Control required type="text" name='zip' placeholder="ex: 11106" />
                 </Form.Group>
                         
                 <Form.Group controlId="Image">

@@ -1,12 +1,13 @@
 const router = require("express").Router();
-const { User } = require('../db/index')
+const { User, Address } = require('../db/index')
 
 //all users route
 router.get('/', async (req, res, next) => {
     try {
         const users = await User.findAll({
             //use attributes to pull non sensitive information from db
-            attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'address', 'email', 'role']
+            attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'email', 'role'],
+            include: { model: Address }
         });
         //exports the queried info to front end in json array
         res.send(users);
@@ -30,7 +31,8 @@ router.post('/signup', async (req,res,next) => {
 
 router.get('/:usersId', async(req, res, next) => {
     try {
-        const user = await User.findByPk(req.params.usersId);
+        const user = await User.findByPk(req.params.usersId, 
+            {include: { model: Address }});
         res.send(user);
     } catch (error) {
         next(error)

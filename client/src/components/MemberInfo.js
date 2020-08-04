@@ -38,7 +38,7 @@ export default class MemberInfo extends Component {
                     <div>
                         <img src={memberInfo.imageUrl} alt='userImage' />
                         <p>Name: {memberInfo.firstName} {memberInfo.lastName}</p>
-                        <p>Address: {memberInfo.address}</p>
+                        <p>Address: {memberInfo.addresses[0].state}</p>
                         <p>Email: {memberInfo.email}</p>
                         <p>Role: {memberInfo.role}</p>
                     </div>

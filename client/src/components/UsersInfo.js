@@ -25,6 +25,7 @@ export default class UsersInfo extends Component{
                 loading: false
             }) 
 
+            console.log(data);
         } catch (error) {
             console.error('ERROR: ', error);           
         }   
@@ -46,13 +47,13 @@ export default class UsersInfo extends Component{
 
         //should display user image, name, address & email if user is found.
         return (
-            <div>This is the user info component.
+            <div>This is the ADMIN's route to ALL USERS info.
                 {users.map(user => (
                     <li key={user.id}>
                         <div>
                             <img src = {user.imageUrl} alt='userImage'/>
                             <p><Link to={`/users/${user.id}`}>Name: {user.firstName} {user.lastName}</Link></p>
-                            <p>Address: {user.address}</p>
+                            <p>Address: {user.addresses[0].state}</p>
                             <p>Email: {user.email}</p>
                             <p>Role: {user.role}</p>
                         </div>

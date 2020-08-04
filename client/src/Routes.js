@@ -2,11 +2,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Home, Items, Item, Cart, UsersInfo, MemberInfo, Signup, Login, NotFound, Payment } from './components/';
 
-export default function Routes() {
+export default function Routes(props) {
+  const { handleClick } = props;
+
   // put all routes here
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" render={() => <Home handleClick={handleClick}/>} />
 
       <Route exact path="/superpowers" component={Items} />
       <Route path="/superpowers/:superpowerId" component={Item} />

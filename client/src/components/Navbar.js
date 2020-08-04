@@ -33,7 +33,7 @@ export default function Navbar(props) {
           </div>
 
           <div>
-             <Link to="/users" className={activeLink === '/users' || activeLink === `/users/${document.location.pathname.match(/\d/g)}` || activeLink === '/signup' ? 'selected' : "navbar-link-content"} onClick={() => handleClick('/users')} >
+             <Link to="/users" className={activeLink === '/users' || activeLink === `/users/${document.location.pathname.match(/\d/g)}` ? 'selected' : "navbar-link-content"} onClick={() => handleClick('/users')} >
                 <i className="fas fa-user-circle"></i>
              </Link>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from "./components/";
 import Routes from "./Routes";
+import { ThemeProvider } from "react-bootstrap";
 
 
 export default class App extends React.Component {
@@ -23,7 +24,7 @@ export default class App extends React.Component {
        <div>
          <Navbar activeLink={this.state.activeLink} handleClick={this.handleClick}/>
          <div className="content"> 
-            <Routes />
+            <Routes handleClick={this.handleClick}/>
          </div>
        </div>
     );

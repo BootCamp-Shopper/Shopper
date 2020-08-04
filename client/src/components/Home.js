@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-export default function Home() {
+export default function Home(props) {
+  const { handleClick } = props;
+
   return (
     <div className="Home-content">
       <div className="Home-header">
@@ -15,12 +17,12 @@ export default function Home() {
             <text> and not a part of our marvelous community? </text>
             <text> Well, hurry up and join in the fun by signing up for an account and grabbing your own unique superpower! </text>
             <div className="sign-up-container">
-               <Link to="/signup"> <button className="sign-up-btn"> Sign up </button> </Link>
+               <Link to="/signup" onClick={() => handleClick('/signup')}> <button className="sign-up-btn"> Sign up </button> </Link>
             </div>
          </div>
          <div>
             <h1> Welcome to the marvel family! Have a look around! </h1>
-            <img src="marvel_logo.png" alt="" width="350" />
+            <img src="marvel_logo.png" alt="" width="300" />
          </div>
          <div>
             <h1> About: </h1>

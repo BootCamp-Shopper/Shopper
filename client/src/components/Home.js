@@ -22,7 +22,7 @@ export default function Home(props) {
          </div>
          <div>
             <h1> Welcome to the marvel family! Have a look around! </h1>
-            <img src="marvel_logo.png" alt="" width="350" />
+            <img src="marvel_logo.png" alt="" width="300" />
          </div>
          <div>
             <h1> About: </h1>

@@ -66,28 +66,27 @@ export default class Items extends Component {
         return (
             <div>
                 <div className="items-form">
-                   <h1> Add a new item </h1>
                    <form id="new-item" onSubmit={evt => this.handleSubmit(evt)}>
                       <div>
                          <label htmlFor="name"> Name: </label>
-                         <input name="name" type="text" />
+                         <div> <input name="name" type="text" placeholder="superpower"/> </div>
                       </div>
                       <div>
                          <label htmlFor="superhero"> Superhero: </label>
-                         <input name="superhero" type="text"/>
+                         <div> <input name="superhero" type="text" placeholder="superhero name"/> </div>
                       </div>
                       <div>
                          <label htmlFor="imageUrl"> Image URL: </label>
-                         <input name="imageUrl" type="url"/>
+                         <div> <input name="imageUrl" type="url" placeholder="Direct image link"/> </div>
                       </div>
                       <div>
                          <label htmlFor="price"> Price: $</label>
-                         <input name="price" type="number"/>
+                         <div> <input name="price" type="number" placeholder="Cost of item"/> </div>
                       </div>
                       <div>
                          <label htmlFor="description"> Description: </label>
                          <div>
-                           <textarea name="description" type="text"/>
+                           <textarea style={{width:"30%"}} name="description" type="text" placeholder="Description of superpower"/>
                          </div>
                       </div>
                       <div>

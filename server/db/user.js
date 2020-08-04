@@ -15,10 +15,6 @@ const User = db.define('user', {
         type: Sequelize.STRING,
         defaultValue: 'default-user.jpg',
     },
-    address: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
     email: {
         type: Sequelize.STRING,
         allowNull: false,

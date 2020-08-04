@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SignupForm from './SignupForm';
 
+
 export default class Signup extends Component {
     constructor() {
         super()
@@ -15,18 +16,28 @@ export default class Signup extends Component {
 
         //variables containing user's input values
         const email = event.target.email.value;
+        const password = event.target.password.value;
         const firstName = event.target.firstName.value;
         const lastName = event.target.lastName.value;
-        const password = event.target.password.value;
         const address = event.target.address.value;
         const imageUrl = event.target.imageUrl.value;
 
         //send data to server; to be sent to db
         try {
             const {data} = await axios.post('/auth/signup', {email, firstName, lastName, password, address, imageUrl})
-            this.props.history.push({
-                pathname: `/users/${data.id}`
-            })
+            
+            if (typeof data === 'string'){
+                window.alert(data)
+            }
+
+            else{
+                this.props.history.push({
+                    pathname: `/users/${data.id}`
+                })
+
+            }
+
+            
 
         } catch (error) {
             console.error(error)
@@ -34,8 +45,16 @@ export default class Signup extends Component {
     }
 
     render() {
+        const headerStyle = {
+            textAlign: 'center',
+            padding: '1%'
+        }
+
         return (
             <div>
+                <h1 style={headerStyle}>Signup Form</h1>
+
+
                 <SignupForm handleSubmit={this.handleSubmit} />
             </div>
         )

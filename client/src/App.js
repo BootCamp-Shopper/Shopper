@@ -3,6 +3,7 @@ import { Navbar } from "./components/";
 import Routes from "./Routes";
 import { ThemeProvider } from "react-bootstrap";
 
+
 export default class App extends React.Component {
   constructor() {
      super();

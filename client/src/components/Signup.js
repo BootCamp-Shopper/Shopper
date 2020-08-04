@@ -12,8 +12,6 @@ export default class Signup extends Component {
     async handleSubmit(event) {
         //prevent reloading of page onClick
         event.preventDefault()
-
-        //variables containing user's input values
         
         const userDetails = {
             email: event.target.email.value,
@@ -31,13 +29,6 @@ export default class Signup extends Component {
             zip: event.target.zip.value
         }
 
-        // variables containing address' input values
-        const line1 = event.target.line1.value;
-        const line2 = event.target.line2.value;
-        const city = event.target.city.value;
-        const state = event.target.state.value;
-        const zip = event.target.zip.value;
-
         //send data to server; to be sent to db
         try {
             const {data} = await axios.post('/auth/signup', {userAddress, userDetails})
@@ -45,7 +36,6 @@ export default class Signup extends Component {
             if (typeof data === 'string'){
                 window.alert(data)
             }
-
             else{
                 this.props.history.push({
                     pathname: `/users/${data.id}`

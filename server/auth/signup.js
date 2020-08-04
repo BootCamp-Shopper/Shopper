@@ -3,35 +3,31 @@ const { User, Address } = require('../db/'); // requires user from db since rout
 
 //POST request to add (user) information to database
 router.post('/', async(req, res, next) => {
-    const {email, firstName, lastName, password, imageUrl,
-    line1, line2, city, state, zip} = req.body;
-
     try {
         const check = await User.findOne({
             where: {email: req.body.userDetails.email}
         })
 
         if (check){
-            res.send("Email is already in use!")
+            res.send("Email is already in use!");
         }
 
         else {
-            const newUser = await User.create(req.body.userDetails)
-            const newAddress = await Address.create(req.body.userAddress)
+            const newUser = await User.create(req.body.userDetails);
+            const newAddress = await Address.create(req.body.userAddress);
             
-            await newUser.addAddress(newAddress) //by the power of literal magic (Sequelize has "magic methods" that just happen I guess??????); Sequelize has now associated the user and address table
+            //by the power of "magic methods"; Sequelize has now associated the user and address table
+            await newUser.addAddress(newAddress);
             
-            const test = await User.findOne({
+            const userAddress = await User.findOne({
                 where: {
                     id: newUser.id
                 },
                 include: [{
                     model: Address
                 }]
-            })
-            
-            res.json(newUser)
-
+            });
+            res.json(userAddress);
         }    
     } catch (error) {
         next(error);

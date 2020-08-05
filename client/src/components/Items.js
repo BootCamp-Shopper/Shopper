@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
+import Axios from 'axios'; 
+import { Card, CardColumns, Button, Form } from 'react-bootstrap';
+
+const style = {
+    position: 'relative',
+    padding: '1rem',
+    border: '.2rem solid #ececec',
+    borderRadius: '8px',
+    marginRight: '5%',
+    marginLeft: '5%',
+    color: '#212529'
+}
+
 
 export default class Items extends Component {
     constructor() {
@@ -99,50 +111,56 @@ export default class Items extends Component {
         return (
             <div>
                 <div className="items-form">
-                   <form id="new-item" onSubmit={evt => this.handleSubmit(evt)}>
-                      <div>
-                         <label htmlFor="name"> Name: </label>
-                         <div> <input name="name" type="text" placeholder="superpower"/> </div>
-                      </div>
-                      <div>
-                         <label htmlFor="superhero"> Superhero: </label>
-                         <div> <input name="superhero" type="text" placeholder="superhero name"/> </div>
-                      </div>
-                      <div>
-                         <label htmlFor="imageUrl"> Image URL: </label>
-                         <div> <input name="imageUrl" type="url" placeholder="Direct image link"/> </div>
-                      </div>
-                      <div>
-                         <label htmlFor="price"> Price: $</label>
-                         <div> <input name="price" type="number" placeholder="Cost of item"/> </div>
-                      </div>
-                      <div>
-                         <label htmlFor="description"> Description: </label>
-                         <div>
-                           <textarea style={{width:"30%"}} name="description" type="text" placeholder="Description of superpower"/>
-                         </div>
-                      </div>
-                      <div>
-                         <button type="submit"> Submit </button>
-                      </div>
-                   </form>
+                   <Form id="new-item" onSubmit={evt => this.handleSubmit(evt)} style={style}>
+                      <Form.Group>
+                         <Form.Label>Name</Form.Label>
+                         <Form.Control name="name" type="text" placeholder="Enter superpower name."/>
+                      </Form.Group>
+                      <Form.Group>
+                         <Form.Label>Superhero</Form.Label>
+                         <Form.Control name="superhero" type="text" placeholder="Owner of superpower."/>
+                      </Form.Group>
+                      <Form.Group>
+                         <Form.Label>Image URL</Form.Label>
+                         <Form.Control name="imageUrl" type="url" placeholder="Please provide direct image link."/>
+                      </Form.Group>
+                      <Form.Group>
+                         <Form.Label>Price</Form.Label>
+                         <Form.Control name="price" type="number" placeholder="Cost of item"/>
+                      </Form.Group>
+                      <Form.Group>
+                         <Form.Label> Description </Form.Label>
+                         <Form.Control as='textarea' rows="2" name="description" type="text" placeholder="Include small description of power here."/>
+                      </Form.Group>
+                      
+                      <Button variant="primary" type="submit">
+                           Submit
+                      </Button>
+                      
+                   </Form>
+                
                 </div>
+               
+                <br />
                 <hr />
-                <div>
+                <br />
+            
+                <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
                     {items.map(item => {
                         return (
-                            <div key={item.id}>
-                                <img src={item.imageUrl} alt={item.name} />
-                                <div> <Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link> </div>
-                                <div>${item.price}</div>
-                                <button onClick={() => {this.handleClick(item.id)}}>Delete</button>
-                                <div>
-                                   <input type="submit" value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)} />
-                                </div>
-                            </div>
+                            
+                                <Card key={item.id}>
+                                    <Card.Img variant="top" src={item.imageUrl} alt={item.name} />
+                                    <Card.Body>
+                                    <Card.Title><Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link></Card.Title>
+                                    <Card.Text>${item.price}.00</Card.Text>
+                                    <Button variant='primary' type='button' value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
+                                    <Button variant='danger' type='button' onClick={() => {this.handleClick(item.id)}}>Delete Item</Button>
+                                    </Card.Body>
+                                </Card>
                         )
                     })}
-                </div>
+                </CardColumns>
             </div>
         );
     };

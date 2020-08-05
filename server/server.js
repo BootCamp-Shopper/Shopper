@@ -7,7 +7,7 @@ const port = 4000;
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/api', require('./api'));
 app.use('/auth', require('./auth')) // authorization routes

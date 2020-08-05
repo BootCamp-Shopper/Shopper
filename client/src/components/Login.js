@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Items from './Items';
 
-export default function Login() {
+export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [items, setItems] = useState([]);
@@ -21,6 +21,14 @@ export default function Login() {
                 email: email,
                 password: password,
             });
+            console.log(data);
+
+            if (data.id) {
+                const { data:items } = await Axios.get('api/items');
+                setItems(items);
+                props.handleUser(data);
+            }
+
             if (Array.isArray(data)) {
                 setItems(data);
             }

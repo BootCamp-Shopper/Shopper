@@ -9,6 +9,7 @@ export default class MemberInfo extends Component {
             memberInfo: {},
             memberId: null,
             loading: true,
+            error: {error: false, message: ''},
         };
     };
 
@@ -19,20 +20,29 @@ export default class MemberInfo extends Component {
             const member = await fetch(`/api/users/${userId}`, { method: 'GET' });
             const memberData = await member.json();
 
-            // console.log(memberData);
+            console.log(memberData);
 
             this.setState({
                 memberInfo: memberData.user,
                 memberId: memberData.id,
                 loading: false,
+                error: {error:false, message: ''}
             });
         } catch (err) {
             console.error('ERROR: ', err);
+            this.setState({
+                loading: false,
+                error: {error: true, message: 'USER DOESN\'T EXIST'}
+            })
         }
     }
 
     render() {
-        const { memberInfo, memberId, loading } = this.state;
+        const { memberInfo, memberId, loading, error } = this.state;
+        if(error.error) {
+            return <div>{error.message}</div>
+        }
+
         if (loading) {
             return <div>Loading...</div>
         }

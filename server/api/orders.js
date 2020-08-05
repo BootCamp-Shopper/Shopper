@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const { Item, User, Order } = require("../db");
 const stripe = require('stripe')("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const { checkAuth } = require("../auth/middleware");
 
-router.get("/", async (req,res,next) => {
+router.get("/", checkAuth, async (req,res,next) => {
     try {
        const orders = await Order.findAll({
           where: {
@@ -17,7 +18,7 @@ router.get("/", async (req,res,next) => {
     }
 })
 
-router.post("/add", async (req,res,next) => {
+router.post("/add", checkAuth, async (req,res,next) => {
    try {
       // when user clicks add to cart button, in the backend, user add item and item add user (not additems and add users)
       // we need hero id and user id. 
@@ -50,7 +51,7 @@ const calculateAmount = items => {
     return 1400;
 }
 
-router.post('/payment', async (req,res,next) => {
+router.post('/payment', checkAuth, async (req,res,next) => {
    try {
       const { items } = req.body;
       

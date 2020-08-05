@@ -3,6 +3,15 @@ const { User, Address } = require('../db/');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 
+// TEST to GET the login info
+// router.get('/', async(req, res, next) => {
+//     try {
+//         res.send(req.user);
+//     } catch (err) {
+//         next(err);
+//     }
+// });
+
 //POST request to add (user) information to database
 router.post('/signup', async(req, res, next) => {
     const {email, firstName, lastName, password, imageUrl} = req.body.userDetails;
@@ -34,7 +43,7 @@ router.post('/signup', async(req, res, next) => {
 });
 
 router.get('/login', (req,res,next) => {
-    res.send('Login failed');
+    res.send('Login failed')
 });
 
 router.post('/login', passport.authenticate('local', {

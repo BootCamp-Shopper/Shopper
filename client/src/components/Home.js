@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 
 export default function Home(props) {
   const { handleClick } = props;
+  const [isSignedIn, setState] = useState(false);
 
   return (
     <div className="Home-content">
@@ -17,7 +18,7 @@ export default function Home(props) {
             <text> and not a part of our marvelous community? </text>
             <text> Well, hurry up and join in the fun by signing up for an account and grabbing your own unique superpower! </text>
             <div className="sign-up-container">
-               <Link to="/signup" onClick={() => handleClick('/signup')}> <button className="sign-up-btn"> Sign up </button> </Link>
+               {isSignedIn ? <Link to="/login" onClick={() => handleClick('/login')}> <button className="sign-up-btn"> Login </button> </Link> : <Link to="/signup" onClick={() => handleClick('/signup')}> <button className="sign-up-btn"> Sign up </button> </Link>}
             </div>
          </div>
          <div>

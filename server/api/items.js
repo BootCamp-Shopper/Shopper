@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Item, User } = require("../db");
+const { checkAuthAdmin } = require("../auth/middleware");
 
 //Get All Items
 router.get("/", async (req, res, next) => {
@@ -25,7 +26,7 @@ router.get("/:itemId", async (req, res, next) => {
 });
 
 // Add a new item to the database
-router.post("/", async (req,res,next) => {
+router.post("/", checkAuthAdmin, async (req,res,next) => {
     try {
        // builds a new item instance to add to the database
        const item = await Item.create(req.body);
@@ -38,7 +39,7 @@ router.post("/", async (req,res,next) => {
 })
 
 //Delete an item from the database
-router.delete("/:id", async (req, res, next) =>{
+router.delete("/:id", checkAuthAdmin, async (req, res, next) =>{
   try {
     const deletedItem = await Item.destroy({
       where: {

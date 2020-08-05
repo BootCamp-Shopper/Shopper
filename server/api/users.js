@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const { User, Address } = require('../db/index')
+const { User, Address } = require('../db/index');
+const { checkAuth, checkAuthAdmin } = require("../auth/middleware");
 
-//all users route
-router.get('/', async (req, res, next) => {
+//all users route FOR ADMIN
+router.get('/', checkAuthAdmin, async (req, res, next) => {
     try {
         const users = await User.findAll({
             //use attributes to pull non sensitive information from db
@@ -16,17 +17,17 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.get('/:usersId', async(req, res, next) => {
+router.get('/:usersId', checkAuth, async(req, res, next) => {
     try {
         const user = await User.findByPk(req.params.usersId, 
             {include: { model: Address }});
-        res.send(user);
+        res.send({user: user, id: req.user.id});
     } catch (error) {
         next(error)
     }
 });
 
-router.delete('/:userId', async(req, res, next) => {
+router.delete('/:userId', checkAuth, async(req, res, next) => {
     try {
         const destroyUser = await User.destroy({
             where: {id: req.params.userId}

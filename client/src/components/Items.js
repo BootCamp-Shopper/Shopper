@@ -145,7 +145,7 @@ export default class Items extends Component {
                 <hr />
                 <br />
             
-                <CardColumns>
+                <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
                     {items.map(item => {
                         return (
                             

@@ -25,6 +25,26 @@ export default class Items extends Component {
         }
     }
 
+    //Delete button functionality for items
+    async handleClick (id, evt) {
+        try {
+            const {status} = await Axios.delete(`/api/items/${id}`) //route listing
+            if (status === 200) {
+                //creates the new item list without the deleted item; filter is called to return list of items barring whichever item was flagged as deleted; react re-renders page immediately when state changes
+                const newItemList = this.state.items.filter(item => item.id !== id)
+                this.setState({
+                    items: newItemList
+                })
+            }        
+        } 
+        catch (error) {
+            console.error(error)
+        }
+        
+
+        
+    }
+
     handleSubmit = evt => {
         evt.preventDefault();
 
@@ -102,6 +122,7 @@ export default class Items extends Component {
                                 <img src={item.imageUrl} alt={item.name} />
                                 <div> <Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link> </div>
                                 <div>${item.price}</div>
+                                <button onClick={() => {this.handleClick(item.id)}}>Delete</button>
                             </div>
                         )
                     })}

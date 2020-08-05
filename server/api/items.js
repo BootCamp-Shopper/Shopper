@@ -37,4 +37,22 @@ router.post("/", async (req,res,next) => {
     }
 })
 
+//Delete an item from the database
+router.delete("/:id", async (req, res, next) =>{
+  try {
+    const deletedItem = await Item.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.send('deleted')
+    
+
+  } 
+  
+  catch (error) {
+    next(error);
+  }
+})
+
 module.exports = router;

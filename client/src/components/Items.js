@@ -154,7 +154,7 @@ export default class Items extends Component {
                                     <Card.Body>
                                     <Card.Title><Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link></Card.Title>
                                     <Card.Text>${item.price}.00</Card.Text>
-                                    <Button variant='primary' type='button' value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)}>Add To Cart</Button>
+                                    <Button variant='primary' type='button' value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
                                     <Button variant='danger' type='button' onClick={() => {this.handleClick(item.id)}}>Delete Item</Button>
                                     </Card.Body>
                                 </Card>

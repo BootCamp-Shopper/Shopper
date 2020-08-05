@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -10,8 +11,19 @@ export default function Login() {
         return email.length > 0 && password.length > 0;
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+
+        try {
+            const {data} = await Axios.post('/auth/login', {
+                email: email,
+                password: password,
+            });
+            console.log(data);
+        }
+        catch(err) {
+            console.error(err);
+        }
     }
 
     return (
@@ -33,12 +45,10 @@ export default function Login() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
-                </FormGroup>
-                <Link to="/superpowers">  
-                    <Button block bssize="large" disabled={!validateForm()} type="submit">
-                        Login
-                    </Button>
-                </Link>
+                </FormGroup> 
+                <Button block bssize="large" disabled={!validateForm()} type="submit">
+                    Login
+                </Button>
                 <br /><br />
                 <div>Not part of superpower community? Join us!</div>
                 <Link to="/signup">

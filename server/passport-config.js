@@ -1,6 +1,6 @@
 const { Strategy: LocalStrategy } = require('passport-local');
 const bcrypt = require('bcrypt');
-const { User } = require('../db/');
+const { User } = require('./db');
 
 // authentication on login: takes the passport module and
 // user model to look through 
@@ -11,13 +11,17 @@ const passportAuthentication = (passport) => {
       async (email, password, done) => {
         try {
           // get the user based on their email
-          const user = await User.findOne({ email });
+          const user = await User.findOne({
+              where: {
+                 email: email,
+              }
+          });
           
           // if no user exists by the email provided
           if (!user) {
             return done(null, false, { message: 'No user with that email'});
           }
-          
+
           // if user does exit, compare the typed in password with
           // the user's password.
           // make sure it matches
@@ -44,11 +48,17 @@ const passportAuthentication = (passport) => {
     return done(null, user.id);
   });
   // serialize user as a single id
-  passport.deserializeUser((id, done) => {
-    return done(
-      null,
-      users.find((user) => user.id === id)
-    );
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findOne({ where: {id: id}});
+
+      return done(
+        null, user
+      );
+    }
+    catch(err) {
+       console.error(err)
+    }
   });
 
 };

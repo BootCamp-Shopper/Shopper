@@ -16,11 +16,11 @@ export default function Routes(props) {
       <Route path="/cart" component={Cart} />
 
       <Route path="/signup" component={Signup} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" render={() => <Login handleClick={handleClick}/>} />
       <Route path="/payment" component={Payment}/>
 
       <Route exact path="/users" component={UsersInfo} />
-      <Route path="/users/:userId" component={MemberInfo} />
+      <Route path="/users/:userId" render={(matchProps) => <MemberInfo {...matchProps} handleClick={handleClick} />}/>
 
       <Route path="*" component={NotFound} />
     </Switch>

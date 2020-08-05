@@ -4,7 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Items from './Items';
 
-export default function Login() {
+export default function Login(props) {
+    const { handleClick } = props;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [items, setItems] = useState([]);
@@ -56,7 +58,7 @@ export default function Login() {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </FormGroup>
-                    <Button block bssize="large" disabled={!validateForm()} type="submit">
+                    <Button block bssize="large" disabled={!validateForm()} type="submit" onClick={() => handleClick('/superpowers')}>
                         Login
                     </Button>
                     <br /><br />

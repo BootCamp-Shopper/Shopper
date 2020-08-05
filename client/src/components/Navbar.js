@@ -2,7 +2,7 @@ import React  from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar(props) {
-    const { handleClick, activeLink } = props;
+    const { handleClick, user, activeLink } = props;
     
     // An inbuilt method of the window object: window.onpopstate 
     // The primary reason for this method is so that duplicate URLS won't be stacked
@@ -33,7 +33,7 @@ export default function Navbar(props) {
           </div>
 
           <div>
-             <Link to="/users" className={activeLink === '/users' || activeLink === `/users/${document.location.pathname.match(/\d/g)}` ? 'selected' : "navbar-link-content"} onClick={() => handleClick('/users')} >
+             <Link to={user.role==='admin' ? "/users" : `/users/${user.id}`} className={activeLink === '/users' || activeLink === `/users/${document.location.pathname.match(/\d/g)}` ? 'selected' : "navbar-link-content"} onClick={() => handleClick('/users')} >
                 <i className="fas fa-user-circle"></i>
              </Link>
           </div>

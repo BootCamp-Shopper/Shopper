@@ -1,32 +1,38 @@
 import React from "react";
 import { Navbar } from "./components/";
 import Routes from "./Routes";
-import { ThemeProvider } from "react-bootstrap";
 
 
 export default class App extends React.Component {
-  constructor() {
-     super();
+   constructor() {
+      super();
 
-     this.state = {
-        activeLink: document.location.pathname,
-     }
-  }
+      this.state = {
+         activeLink: document.location.pathname,
+         user: {},
+      }
+   }
 
-  handleClick = pathname => {
-     this.setState({
-        activeLink: pathname,
-     });
-  }
+   handleClick = pathname => {
+      this.setState({
+         activeLink: pathname,
+      });
+   }
 
-  render() {
-     return (
-       <div>
-         <Navbar activeLink={this.state.activeLink} handleClick={this.handleClick}/>
-         <div className="content"> 
-            <Routes handleClick={this.handleClick}/>
+   handleUser = userInfo => {
+      this.setState({
+         user: userInfo,
+      })
+   }
+
+   render() {
+      return (
+         <div>
+            <Navbar activeLink={this.state.activeLink} user={this.state.user} handleClick={this.handleClick} />
+            <div className="content">
+               <Routes user={this.state.user} handleClick={this.handleClick} handleUser={this.handleUser} />
+            </div>
          </div>
-       </div>
-    );
-  }
+      );
+   }
 }

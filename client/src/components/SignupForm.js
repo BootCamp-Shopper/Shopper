@@ -47,7 +47,7 @@ function SignupForm(props) {
 
                 <Form.Group controlId="Line2">
                     <Form.Label>Apt/PO Box #</Form.Label>
-                    <Form.Control required type="text" name='line2' placeholder="ex: 100-00 ABC Street" />
+                    <Form.Control type="text" name='line2' placeholder="ex: 100-00 ABC Street" />
                 </Form.Group>
 
                 <Form.Group controlId="City">
@@ -67,7 +67,7 @@ function SignupForm(props) {
                         
                 <Form.Group controlId="Image">
                     <Form.Label>User Image URL</Form.Label>
-                    <Form.Control required type="text" name='imageUrl' placeholder="Direct link from image host" />
+                    <Form.Control type="text" name='imageUrl' placeholder="Direct link from image host" />
                 </Form.Group>
 
                 <Button variant="primary" type='submit'>

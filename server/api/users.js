@@ -26,6 +26,19 @@ router.get('/:usersId', async(req, res, next) => {
     }
 });
 
+router.delete('/:userId', async(req, res, next) => {
+    try {
+        const destroyUser = await User.destroy({
+            where: {id: req.params.userId}
+        });
+        console.log(destroyUser);
+        res.send({
+            message: "Destroyed User!"
+        });
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;
 

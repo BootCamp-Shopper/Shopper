@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -11,24 +10,13 @@ export default function Login() {
         return email.length > 0 && password.length > 0;
     }
 
-    async function handleSubmit(e) {
-      e.preventDefault();
-     
-      try {
-        const res = await Axios.post('/auth/login', {
-            email: email,
-            password: password,
-        });
-        console.log(res);
-      }
-      catch(err) {
-         console.error(err.stack)
-      }
+    function handleSubmit(e) {
+        e.preventDefault();
     }
 
     return (
         <div className="Login">
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormGroup controlId="email" bssize="large">
                     <FormLabel>E-mail:</FormLabel>
                     <FormControl
@@ -46,15 +34,19 @@ export default function Login() {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </FormGroup>
-                <Button block bssize="large" disabled={!validateForm()} type="submit">
-                     Login
-                </Button>
+                <Link to="/superpowers">  
+                    <Button block bssize="large" disabled={!validateForm()} type="submit">
+                        Login
+                    </Button>
+                </Link>
                 <br /><br />
                 <div>Not part of superpower community? Join us!</div>
                 <Link to="/signup">
-                     <Button block bssize="large" disabled={!validateForm()} type="submit"> Sign Up </Button>
+                    <Button block bssize="large" type="submit">
+                        Sign Up
+                    </Button>
                 </Link>
-            </Form>
+            </form>
         </div>
     );
 };

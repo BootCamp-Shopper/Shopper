@@ -26,11 +26,11 @@ const seed = async () => {
 
     const users = await User.bulkCreate(admin, {returning: true});
     const addresses = await Address.bulkCreate(address, {returning: true});
-
+    
     for(let i=0; i<users.length; i++) {
         // addresses[i].dataValues.userId = users[i].dataValues.id;
         await addresses[i].setUser(users[i]);
-    }
+    };
 
     db.close();
     console.log(`

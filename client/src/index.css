@@ -240,3 +240,7 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
+.list {
+  list-style-type: none;
+}

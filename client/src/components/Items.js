@@ -54,6 +54,19 @@ export default class Items extends Component {
         });
     }
 
+    addOrder = evt => {
+        Axios.post('/api/orders/add', {
+            status: evt.target.getAttribute('status'),
+            superheroId: evt.target.getAttribute('itemID'),
+        })
+        .then((res) => {
+           console.log('Item added to cart!', res.data);
+        })
+        .catch(err => {
+           console.error(err.stack);
+        });
+    }
+
     render() {
         const { items, loading } = this.state;
         if (loading) {
@@ -102,6 +115,9 @@ export default class Items extends Component {
                                 <img src={item.imageUrl} alt={item.name} />
                                 <div> <Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link> </div>
                                 <div>${item.price}</div>
+                                <div>
+                                   <input type="submit" value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)} />
+                                </div>
                             </div>
                         )
                     })}

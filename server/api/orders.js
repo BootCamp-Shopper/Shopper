@@ -1,6 +1,47 @@
 const router = require("express").Router();
-const { Item, User } = require("../db");
+const { Item, User, Order } = require("../db");
 const stripe = require('stripe')("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+
+router.get("/", async (req,res,next) => {
+    try {
+       const orders = await Order.findAll({
+          where: {
+             userId: 1,
+          }
+       });
+       
+       res.send(orders);
+    }
+    catch(err) {
+       next(err);
+    }
+})
+
+router.post("/add", async (req,res,next) => {
+   try {
+      // when user clicks add to cart button, in the backend, user add item and item add user (not additems and add users)
+      // we need hero id and user id. 
+      // Order.create is an error
+      const { status, superheroId } = req.body;
+      
+      const userId = 1;
+
+      const user = await User.findByPk(userId);
+
+      const item = await Item.findByPk(superheroId);
+
+      await user.addItem(item, { through: { status: status }});
+
+      await item.addUser(user, { through: { status: status }});
+
+      const orders = await Order.findAll();
+
+      res.send(orders);
+   }
+   catch(err) {
+      next(err);
+   }
+})
 
 const calculateAmount = items => {
     // Replace this constant with a calculation of the order's amount
@@ -27,14 +68,5 @@ router.post('/payment', async (req,res,next) => {
    }
 })
 
-// Get specific user order.
-router.get("/:userId", async (req, res, next) => {
-    try {
-      const userCart = await User.findByPk(req.params.userId, {
-        include: [{ model: Item }],
-      }); // this is the user's cart information. it is found through querying db for current user & through association with table "order"
-      res.send(userCart);
-    } catch (err) {next(err);}
-});
 
 module.exports = router;

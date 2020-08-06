@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 // require('sequelize-isunique-validator')(Sequelize);
 const db = require('./db');
+const bcrypt = require('bcrypt');
 
 const User = db.define('user', {
     firstName: {
@@ -36,6 +37,10 @@ const User = db.define('user', {
         allowNull: false,
         defaultValue: 'member',
     },
+},);
+
+User.beforeCreate(async (user, options) => {
+    user.password =  await bcrypt.hash(user.password, 10);
 });
 
 module.exports = User;

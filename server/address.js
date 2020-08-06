@@ -19,12 +19,5 @@ module.exports = [
         "city": "Queens",
         "state": "NY",
         "zip": "11106"
-    },
-    {
-        "line1": "1234 Superpowers St.",
-        "line2": "Apt. 4D",
-        "city": "Queens",
-        "state": "NY",
-        "zip": "11106"
     }
 ]

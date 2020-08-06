@@ -51,8 +51,25 @@ export default class MemberInfo extends Component {
         if (loading) {
             return <div>Loading...</div>
         }
-
-        else if (memberInfo.id === memberId) {
+        if(memberInfo.role === 'admin') {
+            return (
+                <div className="individual-page">
+                    <li key={memberInfo.id}>
+                        <div>
+                            <img src={memberInfo.imageUrl} alt='userImage' />
+                            <p>Name: {memberInfo.firstName} {memberInfo.lastName}</p>
+                            <p>Address: {memberInfo.addresses[0].line1}, {memberInfo.addresses[0].line2} </p>
+                            <p>City: {memberInfo.addresses[0].city} </p>
+                            <p>State: {memberInfo.addresses[0].state} </p>
+                            <p>Zipcode: {memberInfo.addresses[0].zip} </p>
+                            <p>Email: {memberInfo.email}</p>
+                            <p>Role: {memberInfo.role}</p>
+                        </div>
+                    </li>
+                </div>
+            );
+        }
+        else if (memberInfo.role === 'member' && memberInfo.id === memberId) {
             return (
                 <div className="individual-page">
                     <li key={memberInfo.id}>

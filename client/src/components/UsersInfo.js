@@ -67,7 +67,7 @@ export default class UsersInfo extends Component {
             return <div>Loading...</div>
         }
 
-        if (user.role === 'admin') {
+        if (users) {
             //should display user image, name, address & email if user is found.
             return (
                 <div>This is the ADMIN's route to ALL USERS info.

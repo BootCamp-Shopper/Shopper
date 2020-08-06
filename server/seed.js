@@ -24,7 +24,13 @@ const seed = async () => {
         //     role: admin.role,
         // })));
 
-        const users = await User.bulkCreate(admin, {returning: true});
+        
+        const users = [];
+        for(let i=0;i<admin.length;i++) {
+            const user = await User.create(admin[i]);
+            users.push(user);
+        }
+
         const addresses = await Address.bulkCreate(address, {returning: true});
         
         for(let i=0; i<users.length; i++) {

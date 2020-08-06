@@ -4,11 +4,12 @@
   "description": "React and Express boilerplate",
   "main": "server.js",
   "scripts": {
-    "start": "cd server && node server.js && npm run seed",
+    "start": "cd server && node server.js",
     "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "seed": "node ./server/seed"
+    "seed": "node ./server/seed",
+    "postdeploy": "node ./server/seed.js"
   },
   "author": "",
   "license": "ISC",

@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 
 const init = async () => {
  try {
-   await db.sync();
+   await db.sync({force: true});
 
    await seed();
 

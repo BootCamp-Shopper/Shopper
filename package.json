@@ -9,7 +9,7 @@
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "seed": "node ./server/seed",
-    "heroku-postbuild": "node ./server/seed" 
+    "heroku-postbuild": "node ./server/seed && cd client && npm run build && cd.." 
   },
   "author": "",
   "license": "ISC",

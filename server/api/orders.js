@@ -5,12 +5,10 @@ const { checkAuth } = require("../auth/middleware");
 
 router.get("/", checkAuth, async (req,res,next) => {
     try {
-       const orders = await Order.findAll({
-          where: {
-             userId: 1,
-          }
-       });
-       
+       const user = await User.findByPk(req.user.id);
+
+       const orders = await user.getItems();
+
        res.send(orders);
     }
     catch(err) {
@@ -23,25 +21,38 @@ router.post("/add", checkAuth, async (req,res,next) => {
       // when user clicks add to cart button, in the backend, user add item and item add user (not additems and add users)
       // we need hero id and user id. 
       // Order.create is an error
-      const { status, superheroId } = req.body;
+      const { superheroId } = req.body;
       
-      const userId = 1;
+      const userId = req.user.id;
 
       const user = await User.findByPk(userId);
 
       const item = await Item.findByPk(superheroId);
 
-      await user.addItem(item, { through: { status: status }});
+      await user.addItem(item, { through: { status: 'pending' }});
 
-      await item.addUser(user, { through: { status: status }});
+      await item.addUser(user, { through: { status: 'pending' }});
 
-      const orders = await Order.findAll();
-
-      res.send(orders);
+      res.send('Item added to cart!');
    }
    catch(err) {
       next(err);
    }
+})
+
+router.delete('/:itemId', async (req,res,next) => {
+    try {
+       const user = await User.findByPk(req.user.id);
+       const superpower = await Item.findByPk(req.params.itemId);
+
+       await user.removeItem(superpower);
+       await superpower.removeUser(user);
+
+       res.send('removed');
+    }
+    catch(err) {
+       next(err);
+    }
 })
 
 const calculateAmount = items => {

@@ -9,6 +9,7 @@ export default class MemberInfo extends Component {
             memberInfo: {},
             memberId: null,
             loading: true,
+            error: {error: false, message: ''},
         };
     };
 
@@ -16,8 +17,8 @@ export default class MemberInfo extends Component {
         try {
             // const { data } = await axios.get('/api/memberInfos/:memberInfoId');
             const { userId } = this.props.match.params;
-
-            let handleRouteChange = this.props.history.listen((location,action) => {
+            
+            this.props.history.listen((location,action) => {
                 this.props.handleClick(document.location.pathname);
             });
             
@@ -28,15 +29,25 @@ export default class MemberInfo extends Component {
                 memberInfo: memberData.user,
                 memberId: memberData.id,
                 loading: false,
+                error: {error:false, message: ''}
             });
+            
         } catch (err) {
             console.error('ERROR: ', err);
+     
+            this.setState({
+                loading: false,
+                error: {error: true, message: 'USER DOESN\'T EXIST'}
+            })
         }
     }
 
     render() {
-        const { memberInfo, memberId, loading } = this.state;
-        
+        const { memberInfo, memberId, loading, error } = this.state;
+        if(error.error) {
+            return <Redirect to="/login"/>
+        }
+
         if (loading) {
             return <div>Loading...</div>
         }

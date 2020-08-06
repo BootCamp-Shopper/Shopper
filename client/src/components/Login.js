@@ -5,8 +5,7 @@ import Axios from 'axios';
 import Items from './Items';
 
 export default function Login(props) {
-    const { handleClick } = props;
-
+    const { handleClick, handleUser } = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [items, setItems] = useState([]);
@@ -23,7 +22,13 @@ export default function Login(props) {
                 email: email,
                 password: password,
             });
-            if (Array.isArray(data)) {
+
+            if (data.id) {
+                const { data:items } = await Axios.get('api/items');
+                setItems(items);
+                handleUser(data);
+            }
+            else if (Array.isArray(data)) {
                 setItems(data);
             }
             else if (data === 'Login failed') {

@@ -5,6 +5,7 @@ const { db } = require("./db");
 const morgan = require("morgan");
 const passport = require('passport');
 const session = require('express-session');
+const seed = require('./seed.js')
 const passportAuthentication = require('./passport-config');
 const port = process.env.PORT ? process.env.PORT : 4000;
 
@@ -49,6 +50,8 @@ app.use((err, req, res, next) => {
 const init = async () => {
  try {
    await db.sync();
+
+   await seed();
 
    app.listen(port, () => {
       console.log(`App listening on PORT ${port}`)

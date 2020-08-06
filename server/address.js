@@ -1,4 +1,4 @@
-[
+module.exports = [
     {
         "line1": "1234 Superpowers St.",
         "line2": "Apt. 1A",

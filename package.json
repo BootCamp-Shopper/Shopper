@@ -8,8 +8,7 @@
     "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "seed": "node ./server/seed",
-    "postdeploy": "node ./server/seed.js"
+    "seed": "node ./server/seed"
   },
   "author": "",
   "license": "ISC",

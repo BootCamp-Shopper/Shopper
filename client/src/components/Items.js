@@ -38,7 +38,7 @@ export default class Items extends Component {
     }
 
     //Delete button functionality for items
-    async handleClick (id, evt) {
+    handleClick = async (id, evt) => {
         try {
             const {status} = await Axios.delete(`/api/items/${id}`) //route listing
             if (status === 200) {
@@ -52,9 +52,6 @@ export default class Items extends Component {
         catch (error) {
             console.error(error)
         }
-        
-
-        
     }
 
     handleSubmit = evt => {
@@ -88,11 +85,10 @@ export default class Items extends Component {
 
     addOrder = evt => {
         Axios.post('/api/orders/add', {
-            status: evt.target.getAttribute('status'),
             superheroId: evt.target.getAttribute('itemID'),
         })
         .then((res) => {
-           console.log('Item added to cart!', res.data);
+           console.log(res.data);
         })
         .catch(err => {
            console.error(err.stack);
@@ -148,13 +144,12 @@ export default class Items extends Component {
                 <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
                     {items.map(item => {
                         return (
-                            
                                 <Card key={item.id}>
-                                    <Card.Img variant="top" src={item.imageUrl} alt={item.name} />
+                                    <Card.Img variant="top" src={item.imageUrl} alt='' />
                                     <Card.Body>
                                     <Card.Title><Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link></Card.Title>
                                     <Card.Text>${item.price}.00</Card.Text>
-                                    <Button variant='primary' type='button' value="Add to cart" status="pending" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
+                                    <Button variant='primary' type='button' value="Add to cart" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
                                     <Button variant='danger' type='button' onClick={() => {this.handleClick(item.id)}}>Delete Item</Button>
                                     </Card.Body>
                                 </Card>

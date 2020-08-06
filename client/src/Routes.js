@@ -16,13 +16,13 @@ export default function Routes(props) {
       <Route path="/cart" component={Cart} />
 
       <Route path="/signup" component={Signup} />
-      <Route path="/login" render={() => <Login handleUser={handleUser} />} />
+      <Route path="/login" render={() => <Login handleClick={handleClick} handleUser={handleUser} />} />
       <Route path="/payment" component={Payment} />
 
       <Route exact path="/users">
         {user.role === 'admin' ? <UsersInfo /> : <Redirect to={`/users/${user.id}`} />}
       </Route>
-      <Route path="/users/:userId" component={MemberInfo} />
+      <Route path="/users/:userId" render={(matchProps) => <MemberInfo {...matchProps} handleClick={handleClick} user={user} /> } />
 
       <Route path="*" component={NotFound} />
     </Switch>

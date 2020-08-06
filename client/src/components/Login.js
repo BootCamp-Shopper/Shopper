@@ -5,6 +5,7 @@ import Axios from 'axios';
 import Items from './Items';
 
 export default function Login(props) {
+    const { handleClick, handleUser } = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [items, setItems] = useState([]);
@@ -21,15 +22,13 @@ export default function Login(props) {
                 email: email,
                 password: password,
             });
-            console.log(data);
 
             if (data.id) {
                 const { data:items } = await Axios.get('api/items');
                 setItems(items);
-                props.handleUser(data);
+                handleUser(data);
             }
-
-            if (Array.isArray(data)) {
+            else if (Array.isArray(data)) {
                 setItems(data);
             }
             else if (data === 'Login failed') {
@@ -64,7 +63,7 @@ export default function Login(props) {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </FormGroup>
-                    <Button block bssize="large" disabled={!validateForm()} type="submit">
+                    <Button block bssize="large" disabled={!validateForm()} type="submit" onClick={() => handleClick('/superpowers')}>
                         Login
                     </Button>
                     <br /><br />

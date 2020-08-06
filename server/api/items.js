@@ -47,8 +47,6 @@ router.delete("/:id", checkAuthAdmin, async (req, res, next) =>{
       }
     })
     res.send('deleted')
-    
-
   } 
   
   catch (error) {

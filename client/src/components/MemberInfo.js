@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Items from './Items';
 
 export default class MemberInfo extends Component {
     constructor() {
         super();
+
         this.state = {
             memberInfo: {},
             memberId: null,
@@ -17,10 +17,13 @@ export default class MemberInfo extends Component {
         try {
             // const { data } = await axios.get('/api/memberInfos/:memberInfoId');
             const { userId } = this.props.match.params;
+            
+            this.props.history.listen((location,action) => {
+                this.props.handleClick(document.location.pathname);
+            });
+            
             const member = await fetch(`/api/users/${userId}`, { method: 'GET' });
             const memberData = await member.json();
-
-            console.log(memberData);
 
             this.setState({
                 memberInfo: memberData.user,
@@ -28,8 +31,10 @@ export default class MemberInfo extends Component {
                 loading: false,
                 error: {error:false, message: ''}
             });
+            
         } catch (err) {
             console.error('ERROR: ', err);
+     
             this.setState({
                 loading: false,
                 error: {error: true, message: 'USER DOESN\'T EXIST'}
@@ -40,7 +45,7 @@ export default class MemberInfo extends Component {
     render() {
         const { memberInfo, memberId, loading, error } = this.state;
         if(error.error) {
-            return <div>{error.message}</div>
+            return <Redirect to="/login"/>
         }
 
         if (loading) {
@@ -65,10 +70,8 @@ export default class MemberInfo extends Component {
                 </div>
             );
         }
-
         else {
-            // return <Redirect to={`/users/${memberId}`} component={MemberInfo} />
-            return <Redirect to='/superpowers' component={Items} />
+            return <Redirect to="/superpowers"/>
         }
     };
 };

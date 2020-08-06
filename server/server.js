@@ -24,16 +24,20 @@ app.use(passport.initialize());
 // store variables to be persisted across the entire session
 app.use(passport.session());
 
-app.get('/', (req,res,next) => {
-   res.send(req.user);
-});
+// app.get('/', (req,res,next) => {
+//    res.send(req.user);
+// });
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.use('/api', require('./api'));
 app.use('/auth', require('./auth')) // authorization routes
+
+app.use('*', (req,res,next) => {
+    res.sendFile(path.join(__dirname,'..','client','build','index.html'));
+});
 
 // Error catching endware
 app.use((err, req, res, next) => {

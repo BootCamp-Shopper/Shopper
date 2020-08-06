@@ -86,13 +86,15 @@ export default class Cart extends Component {
                                     <Card.Body>
                                     <Card.Title><Link to={`/superpowers/${order.id}`}> {order.superhero}'s {order.name} </Link></Card.Title>
                                     <Card.Text>${order.price}.00</Card.Text>
-                                    <Link to="/payment"> <Button variant="primary" type="button"> checkout </Button> </Link>
                                     <Button variant="danger" type="button" onClick={() => this.handleRemove(order.id)}> Remove from cart </Button>
                                     </Card.Body>
                                 </Card>
                             );
                         })}
                     </CardColumns>
+                    <div style={{display: 'flex', justifyContent:'center'}}>
+                        <Link to="/payment"> <Button variant="primary" type="button"> checkout </Button> </Link>
+                    </div>
                 </div>
             );
         }

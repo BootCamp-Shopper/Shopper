@@ -8,7 +8,8 @@
     "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "seed": "node ./server/seed"
+    "seed": "node ./server/seed",
+    "heroku-postbuild": "node ./server/seed" 
   },
   "author": "",
   "license": "ISC",

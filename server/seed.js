@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { db, Item, User, Address } = require('./db');
 const superpowers = require("./superpowers")
 const admin = require('./admin');
@@ -6,6 +5,8 @@ const address = require('./address');
 
 const seed = async () => {
     try {
+        await db.sync({force: true});
+
         await Promise.all(superpowers.map(superpower => Item.create({
             name: superpower.name,
             superhero: superpower.superhero,
@@ -31,6 +32,8 @@ const seed = async () => {
             await addresses[i].setUser(users[i]);
         };
 
+        db.close();
+
         console.log(`
             SUPERPOWER SEEDING COMPLETE!
             NOW YOU CAN BUY ANY SUPERPOWER YOU WANT =)
@@ -43,13 +46,13 @@ const seed = async () => {
 
 module.exports = seed;
 
-// seed().catch(err => {
-//     db.close();
-//     console.log(`
-//         ERROR SEEDING:
+seed().catch(err => {
+    db.close();
+    console.log(`
+        ERROR SEEDING:
 
-//         ${err.message}
+        ${err.message}
 
-//         ${err.stack}
-//     `);
-// });
+        ${err.stack}
+    `);
+});

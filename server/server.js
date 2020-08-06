@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 
 const init = async () => {
  try {
-   await db.sync();
+   await db.sync(); 
 
    app.listen(port, () => {
       console.log(`App listening on PORT ${port}`)

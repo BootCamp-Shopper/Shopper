@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const passport = require('passport');
 const session = require('express-session');
 const passportAuthentication = require('./passport-config');
-const port = 4000;
+const port = process.env.PORT ? process.env.PORT : 4000;
 
 passportAuthentication(passport);
 

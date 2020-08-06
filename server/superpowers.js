@@ -1,4 +1,5 @@
-[
+module.exports =
+ [
     {
         "name": "Heartless Powerplant",
         "superhero": "Iron-Man",
@@ -62,4 +63,4 @@
         "price": 1000000,
         "description": ""
     }
-]
+ ]

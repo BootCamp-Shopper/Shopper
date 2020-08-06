@@ -5,8 +5,9 @@ const { db } = require("./db");
 const morgan = require("morgan");
 const passport = require('passport');
 const session = require('express-session');
+const seed = require('./seed.js')
 const passportAuthentication = require('./passport-config');
-const port = 4000;
+const port = process.env.PORT ? process.env.PORT : 4000;
 
 passportAuthentication(passport);
 
@@ -24,16 +25,20 @@ app.use(passport.initialize());
 // store variables to be persisted across the entire session
 app.use(passport.session());
 
-app.get('/', (req,res,next) => {
-   res.send(req.user);
-});
+// app.get('/', (req,res,next) => {
+//    res.send(req.user);
+// });
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.use('/api', require('./api'));
 app.use('/auth', require('./auth')) // authorization routes
+
+app.use('*', (req,res,next) => {
+    res.sendFile(path.join(__dirname,'..','client','build','index.html'));
+});
 
 // Error catching endware
 app.use((err, req, res, next) => {
@@ -45,6 +50,8 @@ app.use((err, req, res, next) => {
 const init = async () => {
  try {
    await db.sync();
+
+   await seed();
 
    app.listen(port, () => {
       console.log(`App listening on PORT ${port}`)

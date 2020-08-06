@@ -10,7 +10,6 @@ const port = process.env.PORT ? process.env.PORT : 4000;
 
 passportAuthentication(passport);
 
-// some change
 // session takes in a lot of different options
 // secret is a key that we want to keep secret and
 // encrypt all of our information

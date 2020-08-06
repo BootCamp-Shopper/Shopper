@@ -18,7 +18,6 @@ export default class OrderSummary extends Component {
                 items: data,
                 isLoading: false,
             });
-            console.log(this.state.items);
         } catch (err) {
             console.error(err);
         }
@@ -34,13 +33,13 @@ export default class OrderSummary extends Component {
         } else {
             return (
                 <div>
-                    <h1> Order Summary </h1>
+                    <h3> Order Summary </h3>
                     <hr />
                     <div>
                         {items.map(item => {
                             return (
-                                <ListGroup horizontal>
-                                    <ListGroup.Img src={item.imageUrl} alt='' />
+                                <ListGroup horizontal='md' key={item.id}>
+                                    <img src={item.imageUrl} alt={item.name} style={{width: '200px', height: '100px'}}/>
                                     <ListGroup.Item>{item.name}</ListGroup.Item>
                                     <ListGroup.Item>{item.price}</ListGroup.Item>
                                 </ListGroup>

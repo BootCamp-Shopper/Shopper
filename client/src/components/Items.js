@@ -106,6 +106,27 @@ export default class Items extends Component {
 
         return (
             <div>
+                <br />
+                <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
+                    {items.map(item => {
+                        return (
+                                <Card key={item.id}>
+                                    <Card.Img variant="top" src={item.imageUrl} alt='' />
+                                    <Card.Body>
+                                    <Card.Title><Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link></Card.Title>
+                                    <Card.Text>${item.price}.00</Card.Text>
+                                    <Button variant='primary' type='button' value="Add to cart" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
+                                    <Button variant='danger' type='button' onClick={() => {this.handleClick(item.id)}}>Delete Item</Button>
+                                    </Card.Body>
+                                </Card>
+                        )
+                    })}
+                </CardColumns>
+
+                <br />
+                <hr />
+                <br />
+
                 <div className="items-form">
                    <Form id="new-item" onSubmit={evt => this.handleSubmit(evt)} style={style}>
                       <Form.Group>
@@ -136,26 +157,6 @@ export default class Items extends Component {
                    </Form>
                 
                 </div>
-               
-                <br />
-                <hr />
-                <br />
-            
-                <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
-                    {items.map(item => {
-                        return (
-                                <Card key={item.id}>
-                                    <Card.Img variant="top" src={item.imageUrl} alt='' />
-                                    <Card.Body>
-                                    <Card.Title><Link to={`/superpowers/${item.id}`}> {item.superhero}'s {item.name} </Link></Card.Title>
-                                    <Card.Text>${item.price}.00</Card.Text>
-                                    <Button variant='primary' type='button' value="Add to cart" itemID={item.id} onClick={(evt) => this.addOrder(evt)} style={{marginRight: '3%'}}>Add To Cart</Button>
-                                    <Button variant='danger' type='button' onClick={() => {this.handleClick(item.id)}}>Delete Item</Button>
-                                    </Card.Body>
-                                </Card>
-                        )
-                    })}
-                </CardColumns>
             </div>
         );
     };

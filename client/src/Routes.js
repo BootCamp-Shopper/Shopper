@@ -13,7 +13,7 @@ export default function Routes(props) {
       <Route exact path="/superpowers" component={Items} />
       <Route path="/superpowers/:superpowerId" component={Item} />
 
-      <Route path="/cart" component={Cart} />
+      <Route path="/cart" render={(matchProps) => <Cart {...matchProps} handleClick={handleClick} user={user} />} />
 
       <Route path="/signup" component={Signup} />
       <Route path="/login" render={() => <Login handleClick={handleClick} handleUser={handleUser} />} />
@@ -22,7 +22,7 @@ export default function Routes(props) {
       <Route exact path="/users">
         {user.role === 'admin' ? <UsersInfo /> : <Redirect to={`/users/${user.id}`} />}
       </Route>
-      <Route path="/users/:userId" render={(matchProps) => <MemberInfo {...matchProps} handleClick={handleClick} user={user} /> } />
+      <Route path="/users/:userId" render={(matchProps) => <MemberInfo {...matchProps} handleClick={handleClick} user={user} />} />
 
       <Route path="*" component={NotFound} />
     </Switch>

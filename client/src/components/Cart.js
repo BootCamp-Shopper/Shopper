@@ -10,24 +10,32 @@ export default class Cart extends Component {
 
         this.state = {
             orders: [],
-            isLoggedIn: false,
+            userInfo: {},
             isLoading: true,
         }
     }
 
     async componentDidMount() {
         try {
-            const { data } = await Axios.get('/api/orders');
+            const user = this.props.user;
 
-            if (typeof (data) === 'string') {
+            this.props.history.listen((location,action) => {
+                this.props.handleClick(document.location.pathname);
+            });
+
+            if (Object.keys(user).length !== 0) {
+                const member = await fetch(`/api/users/${user.id}`, { method: 'GET' });
+                const memberData = await member.json();
+                console.log(memberData);
+                const { data } = await Axios.get('/api/orders');
+
                 this.setState({
-                    isLoggedIn: false,
+                    orders: data,
+                    userInfo: memberData.user,
                     isLoading: false,
                 });
             } else {
                 this.setState({
-                    orders: data,
-                    isLoggedIn: true,
                     isLoading: false,
                 });
             }
@@ -39,60 +47,59 @@ export default class Cart extends Component {
 
     handleRemove = async (id) => {
         try {
-           const { data } = await Axios.delete(`/api/orders/${id}`);
-           
-           let newOrders = this.state.orders.filter(order => order.id !== id);
+            const { data } = await Axios.delete(`/api/orders/${id}`);
 
-           this.setState({
-                  orders: newOrders,
-                  isLoggedIn: true,
-                  isLoading: false,
-           }); 
+            let newOrders = this.state.orders.filter(order => order.id !== id);
+
+            this.setState({
+                orders: newOrders,
+                isLoading: false,
+            });
         }
-        catch(err) {
-           console.error(err);
+        catch (err) {
+            console.error(err);
         }
     }
 
     render() {
-        const { orders, isLoggedIn, isLoading } = this.state;
+        const { orders, userInfo, isLoading } = this.state;
 
         if (isLoading) {
             return (
                 <div> Loading... </div>
             );
         }
-        else if (isLoggedIn === false) {
+        else if (Object.keys(userInfo).length === 0) {   
             return (
                 <Redirect to='/login' component={Login} />
             );
         }
-        else if(orders.length === 0) {
+        else if (orders.length === 0) {
             return (
-               <div>
-                   <h1 style={{display: 'flex', justifyContent:'center'}}> You have no superpowers in cart! </h1>
-               </div>
+                <div>
+                    <h1 style={{ display: 'flex', justifyContent: 'center' }}> You have no superpowers in cart! </h1>
+                </div>
             );
         }
         else {
             return (
                 <div>
-                    <h1 style={{display: 'flex', justifyContent:'center'}}> Your Cart </h1>
-                    <CardColumns style={{marginLeft: '5%', marginRight: '5%'}}>
+                    <h1 style={{ display: 'flex', justifyContent: 'center' }}> Your Cart </h1>
+                    <CardColumns style={{ marginLeft: '5%', marginRight: '5%' }}>
                         {orders.map(order => {
                             return (
                                 <Card key={order.id}>
                                     <Card.Img variant="top" src={order.imageUrl} alt='' />
                                     <Card.Body>
-                                    <Card.Title><Link to={`/superpowers/${order.id}`}> {order.superhero}'s {order.name} </Link></Card.Title>
-                                    <Card.Text>${order.price}.00</Card.Text>
-                                    <Button variant="danger" type="button" onClick={() => this.handleRemove(order.id)}> Remove from cart </Button>
+                                        <Card.Title><Link to={`/superpowers/${order.id}`}> {order.superhero}'s {order.name} </Link></Card.Title>
+                                        <Card.Text>${order.price}.00</Card.Text>
+                                        <Button variant="danger" type="button" onClick={() => this.handleRemove(order.id)}> Remove from cart </Button>
                                     </Card.Body>
                                 </Card>
                             );
                         })}
                     </CardColumns>
-                    <div style={{display: 'flex', justifyContent:'center'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <Link to="/payment"> <Button variant="primary" type="button"> checkout </Button> </Link>
                     </div>
                 </div>

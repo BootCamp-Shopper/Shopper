@@ -46,7 +46,7 @@ function SignupForm(props) {
 
                 <Form.Group controlId="Line2">
                     <Form.Label>Apt/PO Box #</Form.Label>
-                    <Form.Control type="text" name='line2' placeholder="ex: 100-00 ABC Street" />
+                    <Form.Control type="text" name='line2' placeholder="ex: Apt. 1A" />
                 </Form.Group>
 
                 <Form.Group controlId="City">
@@ -61,7 +61,7 @@ function SignupForm(props) {
 
                 <Form.Group controlId="Zipcode">
                     <Form.Label>Zipcode</Form.Label>
-                    <Form.Control required type="text" name='zip' placeholder="ex: 11106" />
+                    <Form.Control required type="text" name='zip' placeholder="ex: 11111" />
                 </Form.Group>
                         
                 <Form.Group controlId="Image">
